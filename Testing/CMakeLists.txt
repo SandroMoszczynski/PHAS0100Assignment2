@@ -19,6 +19,7 @@ set(TEST_CASES
   sfmBasicTest
   sfmCommandLineArgsTest
   sfmTypesTest
+  sfmPHASTest
 )
 
 foreach(_test_case ${TEST_CASES})
@@ -34,5 +35,6 @@ endforeach()
 ##################################################################################################
 
 add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/sfmBasicTest)
+add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/sfmPHASTest)
 add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/sfmTypesTest)
 add_test(1File ${EXECUTABLE_OUTPUT_PATH}/sfmCommandLineArgsTest ${DATA_DIR}/input.txt)
