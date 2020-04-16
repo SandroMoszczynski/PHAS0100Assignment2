@@ -7,7 +7,7 @@
 namespace sfm{
 
 
-class Forces : public Pedestrians {
+class Forces : public Pedestrian {
     public:
     dir2d &desired_direction();
     vec2d &attractive_force();

@@ -1,4 +1,3 @@
-#include "sfmPedestrian.h"
 #include "sfmForces.h"
 #include <cmath>
 
@@ -18,6 +17,12 @@ vec2d &Forces::attractive_force(){
     force = (desired_direction()*Return_Speed() - Return_Velocity())*(1/Return_Rest_time());
     return force;
 
+};
+
+double &Forces::elipse(){
+    double b;
+    //dir2d diff_pedestrians = current_pos;
+    return b;
 };
 
 //sfm::dir2d &repulsive_force(){};

@@ -19,7 +19,7 @@ TEST_CASE( "create a class for DataImporter", "[Linear Data Creator]") {
     pos2d test_current_position;
     double test_speed;
     double test_rest_time;
-    Pedestrians test1(origin, destination,velocity, current_position, speed, rest_time);
+    Pedestrian test1(origin, destination,velocity, current_position, speed, rest_time);
     test_origin = test1.Return_Origin();
     test_destination = test1.Return_Destination();
     test_velocity = test1.Return_Velocity();
