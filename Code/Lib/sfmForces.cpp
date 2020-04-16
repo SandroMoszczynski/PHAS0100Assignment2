@@ -5,7 +5,7 @@
 
 namespace sfm{
 
-dir2d &Forces::desired_position(){
+dir2d &Forces::desired_direction(){
     pos2d current_pos  = Return_Current_Position();
     pos2d origin = Return_Origin();
     dir2d length = origin  - current_pos;
@@ -15,7 +15,7 @@ dir2d &Forces::desired_position(){
 
 vec2d &Forces::attractive_force(){
     vec2d force;
-    force = (desired_position()*Return_Speed() - Return_Velocity())*(1/Return_Rest_time());
+    force = (desired_direction()*Return_Speed() - Return_Velocity())*(1/Return_Rest_time());
     return force;
 
 };
