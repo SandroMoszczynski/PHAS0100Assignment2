@@ -21,6 +21,7 @@ class Pedestrians {
     pos2d &Return_Current_Position();
     double &Return_Speed();
     double &Return_Rest_time();
+    dir2d &Pedestrain_force(); 
     };
 
 }
