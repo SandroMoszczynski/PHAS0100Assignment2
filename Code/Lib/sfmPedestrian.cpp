@@ -2,7 +2,7 @@
 
 namespace sfm{
 
-Pedestrians::Pedestrians(vec2d _origin,vec2d _destination, vec2d _velocity,vec2d _current_position,double _speed,double _rest_time){
+Pedestrians::Pedestrians(pos2d _origin,pos2d _destination, dir2d _velocity,pos2d _current_position,double _speed,double _rest_time){
 
     origin = _origin;
     destination = _destination;
@@ -13,19 +13,19 @@ Pedestrians::Pedestrians(vec2d _origin,vec2d _destination, vec2d _velocity,vec2d
 
 }
 
-vec2d &Pedestrians::Return_Origin(){
+pos2d &Pedestrians::Return_Origin(){
     return origin;
 };
 
-vec2d &Pedestrians::Return_Destination(){
+pos2d &Pedestrians::Return_Destination(){
     return destination;
 };
 
-vec2d &Pedestrians::Return_Velocity(){
+dir2d &Pedestrians::Return_Velocity(){
     return velocity;
 };
 
-vec2d &Pedestrians::Return_Current_Position(){
+pos2d &Pedestrians::Return_Current_Position(){
     return current_position;
 };
 
