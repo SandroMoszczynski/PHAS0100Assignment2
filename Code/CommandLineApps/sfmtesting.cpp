@@ -9,17 +9,17 @@
 
 int main()
 {
-    sfm::pos2d origin1(-51,12); //b/w 50 and 10
+    sfm::pos2d origin1(19,2); //b/w 50 and 10
     sfm::pos2d destination1(16.285,2.89);
-    sfm::dir2d velocity1(1.65,-0.3354);
-    sfm::pos2d current_position1(2,8);
-    double speed1 = 145;
+    sfm::dir2d velocity1(1.65,0.3354);
+    sfm::pos2d current_position1(11,3.5);
+    double speed1 = 1.15;
     double rest_time1 = 1;
-    sfm::pos2d origin2(1,12); //b/w 50 and 10
+    sfm::pos2d origin2(1,6); //b/w 50 and 10
     sfm::pos2d destination2(46.50,1.648);
-    sfm::dir2d velocity2(12.56,-0.354);
+    sfm::dir2d velocity2(1.56,0.354);
     sfm::pos2d current_position2(14,5);
-    double speed2 = 125;
+    double speed2 = 1.55;
     double rest_time2 = 0;
     sfm::pos2d origin3(4,5); //b/w 50 and 10
     sfm::pos2d destination3(1,83);
@@ -33,7 +33,8 @@ int main()
     sfm::Forces test3(origin3, destination3,velocity3, current_position3, speed3, rest_time3);
     //now i create all the tests variables
     sfm::dir2d desdirec;
-    sfm::vec2d ataforce;
+    sfm::dir2d repforce;
+    sfm::dir2d ataforce;
     std::shared_ptr<sfm::Forces> sp1(new sfm::Forces(test1));
     std::shared_ptr<sfm::Forces> sp2(new sfm::Forces(test2));
     double elipse_test;
@@ -42,6 +43,7 @@ int main()
     //std::vector<std::shared_ptr<sfm::Pedestrian> >sp1,sp2;
     desdirec = test1.desired_direction(desdirec);
     ataforce = test1.attractive_force(ataforce);
+    repforce = test1.repulsive_force(sp1,sp2,elipse_test,repforce);
     //std::cout << sp1.get() << std::endl;
     //std::cout << sp2.get() << std::endl;
     //std::cout << sp3.get() << std::endl;
@@ -54,8 +56,10 @@ int main()
     //test_speed = force1.Return_Speed();
     //test_speed = sp1->Return_Speed();
     //std::cout << test_speed << std::endl;
-    std::cout << elipse_test << std::endl;
-    //std::cout << ataforce[1] << std::endl;
-    //std::cout << ataforce[0] << std::endl;
+    //std::cout << elipse_test << std::endl;
+    std::cout << ataforce[1] << std::endl;
+    std::cout << ataforce[0] << std::endl;
+    std::cout << repforce[1] << std::endl;
+    std::cout << repforce[0] << std::endl;
     return 0;
 }
