@@ -50,11 +50,13 @@ dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces){
     return Forces;
 };
 
-double &Forces::fov(dir2d ata_force,dir2d des_dir, double &fov,double phi, double c){
+double &Forces::fov(dir2d rep_force,dir2d des_dir, double &fov,double phi, double c){
     double w;
     double ff;
-    ff = ata_force*des_dir;
-    w = ata_force.length()*cos(phi/2); 
+    ff = rep_force*des_dir;
+    w = rep_force.length()*cos(phi/2); 
+    //ff = sqrt(pow(rep_force*des_dir,2));
+    //w = sqrt(pow(rep_force.length()*cos(phi/2),2)); 
     if (ff >= w){
         fov = 1;
     }
@@ -65,8 +67,8 @@ double &Forces::fov(dir2d ata_force,dir2d des_dir, double &fov,double phi, doubl
 };
 
 dir2d &Forces::border_repulsive(dir2d &Forces){
-    std::vector<std::pair<double,double>> top_vec = {{0,10},{1,10},{2,10},{3,10},{4,10},{5,10},{6,10},{7,10},{8,10},{8,10},{10,10}};
-    std::vector<std::pair<double,double>> bottom_vec = {{1,0},{2,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0},{8,0},{10,0}};
+    std::vector<std::pair<double,double>> top_vec = {{0,10},{5,10},{10,10},{15,10},{20,10},{25,10},{30,10},{35,10},{40,10},{45,10},{50,10}};
+    std::vector<std::pair<double,double>> bottom_vec = {{0,0},{5,0},{10,0},{15,0},{20,0},{25,0},{30,0},{35,0},{40,0},{45,0},{50,0}};
     double U_zero = 10; //m^2/s^-2
     double R = 0.2; //m
     dir2d total_top;
@@ -99,7 +101,7 @@ dir2d &Forces::Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >Pedestr
     dir2d bor_repul = border_repulsive(bor_repul);
     dir2d ata_force = attractive_force(ata_force);
     dir2d des_dir = desired_direction(des_dir);
-    double Fov = fov(ata_force,des_dir,Fov);
+    double Fov = fov(rep_force,des_dir,Fov);
     Forces = (rep_force)*Fov + bor_repul+ ata_force;
     return Forces;
 };

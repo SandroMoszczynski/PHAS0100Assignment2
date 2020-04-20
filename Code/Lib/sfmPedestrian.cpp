@@ -12,11 +12,6 @@ Pedestrian::Pedestrian(pos2d _origin,pos2d _destination, dir2d _velocity,pos2d _
     rest_time = _rest_time;
 }
 
-std::vector<std::shared_ptr<Pedestrian> > &Pedestrian::Pedestrians(){
-    std::vector<std::shared_ptr<Pedestrian> >all_pedestrians;
-    return all_pedestrians;
-};
-
 pos2d &Pedestrian::Return_Origin(){
     return origin;
 };
