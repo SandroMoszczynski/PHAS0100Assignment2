@@ -15,8 +15,8 @@ class Forces : public Pedestrian {
     dir2d &attractive_force(dir2d &force);
     double &elipse(std::shared_ptr<Forces>pedesa, std::shared_ptr<Forces>pedesb, double &elipse); // passa is the tested one, passb changes as all other pedestrians
     dir2d &repulsive_force(std::shared_ptr<Forces>pedesa, std::shared_ptr<Forces>pedesb, double &elipse, dir2d &Forces);
-    //double &fov(double &fov);    
-    //sfm::dir2d &border_repulsive();
+    double &fov(dir2d f,dir2d des_dir, double &fov, double phi = 3.49066,double c = 0.5);    
+    sfm::dir2d &border_repulsive(dir2d &Forces);
     //std::vector<shared_ptr<sfm::Pedestrians> > &Resultant_force();
 };
 }

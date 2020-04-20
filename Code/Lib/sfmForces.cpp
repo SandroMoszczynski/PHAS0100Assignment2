@@ -36,22 +36,59 @@ double &Forces::elipse(std::shared_ptr<Forces>pedesa, std::shared_ptr<Forces>ped
 dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesa, std::shared_ptr<Forces>pedesb, double &elipse, dir2d &Forces){
     dir2d Force;
     double b;
-    dir2d unit_length = pedesa->Return_Current_Position()- pedesb->Return_Current_Position();;
+    double V_zero = 2.1;
+    double sigma = 0.3;
+    dir2d unit_length = pedesa->Return_Current_Position()- pedesb->Return_Current_Position();
     dir2d unit_direction(unit_length[1] / unit_length.length(), unit_length[0]/ unit_length.length());
     b = pedesa->elipse(pedesa,pedesb,b);
-    double Vab = 2.1*exp(-b/0.3);
-    Force = unit_direction*(-(1/0.3)*Vab);
+    double Vab = V_zero*exp(-b/sigma);
+    Force = unit_direction*((1/sigma)*Vab);
     Forces = Force;
     return Forces;
 };
 
-// double &Forces::fov(double f, double &fov){
-//     double w;
-//     w = f.length() cos(phi)
-//     fov = w;
-//     return fov;
-// };
+double &Forces::fov(dir2d ata_force,dir2d des_dir, double &fov,double phi, double c){
+    double w;
+    double ff;
+    ff = ata_force*des_dir;
+    w = ata_force.length()*cos(phi/2); 
+    if (ff >= w){
+        fov = 1;
+    }
+    else{
+        fov = c;
+    }
+    return fov;
+};
 
-//sfm::dir2d &border_repulsive(){};
+sfm::dir2d &Forces::border_repulsive(dir2d &Forces){
+    std::vector<std::pair<double,double>> top_vec = {{0,10},{1,10},{2,10},{3,10},{4,10},{5,10},{6,10},{7,10},{8,10},{8,10},{10,10}};
+    std::vector<std::pair<double,double>> bottom_vec = {{1,0},{2,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0},{8,0},{10,0}};
+    double U_zero = 10; //m^2/s^-2
+    double R = 0.2; //m
+    dir2d total_top;
+    dir2d total_bot;
+    pos2d current_pos  = Return_Current_Position();
+    for(int i = 0;i < top_vec.size(); ++i){
+        vec2d top(top_vec[i].first,top_vec[i].second);
+        vec2d bot(bottom_vec[i].first,bottom_vec[i].second);
+        dir2d dis_to_top(current_pos[1]-top[1],current_pos[0]-top[0]);
+        dir2d dis_to_bot(current_pos[1]-bot[1],current_pos[0]-bot[0]);
+        dir2d unit_to_top(dis_to_top[1] / dis_to_top.length(), dis_to_top[0]/ dis_to_top.length());
+        dir2d unit_to_bot(dis_to_bot[1] / dis_to_bot.length(), dis_to_bot[0]/ dis_to_bot.length());
+        dir2d force_top = U_zero*exp(-dis_to_top.length()/R)*(1/R)*unit_to_top;
+        dir2d force_bot = U_zero*exp(-dis_to_bot.length()/R)*(1/R)*unit_to_bot;
+        total_top = total_top + force_top;
+        total_bot = total_bot + force_bot;
+    }
+    if (total_top.length() > total_bot.length()){
+        Forces = {total_top[1]/top_vec.size(),total_top[0]/top_vec.size()};
+    }
+    else
+    {
+        Forces = {total_bot[1]/top_vec.size(),total_bot[0]/top_vec.size()};
+    }
+    return Forces;
+};
 
 }
