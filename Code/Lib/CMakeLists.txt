@@ -19,11 +19,13 @@ set(PHAS0100ASSIGNMENT2_LIBRARY_SRCS
   sfmMyFunctions.cpp
   sfmException.cpp
   sfmPedestrian.cpp
+  sfmForces.cpp
 )
 
 set(PHAS0100ASSIGNMENT2_LIBRARY_HDRS
   sfmExceptionMacro.h
   sfmPedestrian.h
+  sfmForces.h
 )
 
 add_library(${PHAS0100ASSIGNMENT2_LIBRARY_NAME} ${PHAS0100ASSIGNMENT2_LIBRARY_HDRS} ${PHAS0100ASSIGNMENT2_LIBRARY_SRCS})
