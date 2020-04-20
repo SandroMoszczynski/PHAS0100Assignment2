@@ -2,9 +2,7 @@
 #include <cmath>
 #include <iostream>
 
-
 namespace sfm{
-
 
 dir2d &Forces::desired_direction(dir2d &final_position){
     pos2d current_pos  = Return_Current_Position();
@@ -23,17 +21,11 @@ dir2d &Forces::attractive_force(dir2d &force){
     return force;
 };
 
-double &Forces::elipse(std::shared_ptr<Forces>pedesb, double &elipse){
+double &Forces::elipse(std::shared_ptr<Forces>pedesb, double &elipse, double delta_t){
     double b;
     dir2d diff_pedestrians = Return_Current_Position() - pedesb->Return_Current_Position();
     dir2d posb = pedesb->desired_direction(posb);
-    double step_width = pedesb->Return_Speed()*2;
-
-    // std::cout << step_width << " step width," << std::endl;
-    // std::cout << posb[1] << "," << posb[0] << " posb?"<< std::endl; 
-    // std::cout << posb.length() << " lenposb?"<< std::endl;
-    // std::cout << pow(diff_pedestrians.length() + (diff_pedestrians-posb*step_width).length(),2)- pow(step_width,2) << " inside bracket" << std::endl;
-
+    double step_width = pedesb->Return_Speed()*delta_t;
     b = sqrt(pow(diff_pedestrians.length() + (diff_pedestrians-posb*step_width).length(),2)- pow(step_width,2));
     elipse = b/2;
     return elipse;
