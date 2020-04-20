@@ -32,8 +32,10 @@ int main()
         pedestrians.emplace_back(pointer);
     }
     sfm::dir2d totalforce = pedestrians[0]->Resultant_force(pedestrians,totalforce);
-    std::cout << totalforce[1] << std::endl;
-    std::cout << totalforce[0] << std::endl;
+    //std::cout << totalforce[1] << std::endl;
+    //std::cout << totalforce[0] << std::endl;
+    //double speed = pedestrians[12]->Return_Speed();
+    //std::cout << speed << std::endl;
 
     return 0;
 }
