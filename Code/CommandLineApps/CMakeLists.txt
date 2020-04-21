@@ -16,11 +16,12 @@ set(_command_line_apps
   sfmMyFirstApp
   sfmtesting
   sfmPedestrianSpawner
+  sfmVisualiserDemo
 )
 
-if (VTK_FOUND)
-  list(APPEND _command_line_apps sfmVisualiserDemo)
-endif ()
+# if (VTK_FOUND)
+#   list(APPEND _command_line_apps sfmVisualiserDemo)
+# endif ()
 
 foreach(_app ${_command_line_apps})
   add_executable(${_app} ${_app}.cpp)

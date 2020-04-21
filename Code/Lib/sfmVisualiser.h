@@ -15,7 +15,7 @@
 
 #include <vector>
 
-#include "vtk-7.1/vtkSmartPointer.h"
+#include <vtk-7.1/vtkSmartPointer.h>
 #include "sfmBasicTypes.h"
 
 class vtkContextView;
@@ -34,15 +34,10 @@ namespace sfm {
 class Visualiser {
 
   public:
-    Visualiser(unsigned int n_pedestrians = 0,
-                  double world_x = POS2D_XWRAP, double world_y = POS2D_YWRAP, 
-		  double window_scale = 15.0);
+    Visualiser(unsigned int n_pedestrians = 0, double world_x = POS2D_XWRAP, double world_y = POS2D_YWRAP, double window_scale = 15.0);
     ~Visualiser();
-    void CreateWorld(unsigned int n_pedestrians, 
-		    double width_x, double width_y);
-    bool SetPedestrian(unsigned int i,  
-		       double xpos, double ypos,
-		       double xspeed, double yspeed);
+    void CreateWorld(unsigned int n_pedestrians, double width_x, double width_y);
+    bool SetPedestrian(unsigned int i, double xpos, double ypos, double xspeed, double yspeed);
     void UpdateScene();
     void SetWindowSize(double scale); // Adjust window size (pixels/meter), requires CreateWorld to take effect
     void SetMarkerSize(double scale); // Adjust base marker size in pixels 
