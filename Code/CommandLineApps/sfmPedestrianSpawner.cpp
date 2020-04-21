@@ -33,10 +33,12 @@ int main()
         std::shared_ptr<sfm::Forces> pointer(new sfm::Forces(ped_spawn));
         pedestrians.emplace_back(pointer);
     }
-    
+
     //another for loop over all time
     double dt = 0.1; //s
     double finish_time_s = 1;//second
+    double v_max = 1.3;
+    //std::cin >> v_max;
     //std::cin >> dt;
     //std::cin >> finish_time_s;
     for(int t=0; t<(finish_time_s/dt);++t){
@@ -47,8 +49,8 @@ int main()
             sfm::dir2d temp_force;
             Totalforce.push_back(pedestrians[j]->Resultant_force(pedestrians,temp_force, dt));
             sfm::dir2d  new_velocity = (Totalforce[j] + pedestrians[j]->Return_Velocity())*dt;
-            if(new_velocity.length() > 1.3*pedestrians[j]->Return_Speed()){
-                new_velocity = new_velocity*(1.3*pedestrians[j]->Return_Speed()/new_velocity.length());
+            if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
+                new_velocity = new_velocity*(v_max*pedestrians[j]->Return_Speed()/new_velocity.length());
                 }
                 sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
             sfm::pos2d new_position = {new_velocity[1]+position[1]*dt,new_velocity[0]+position[0]*dt};
