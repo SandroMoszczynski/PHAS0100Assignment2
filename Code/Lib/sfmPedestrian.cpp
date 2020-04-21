@@ -36,4 +36,12 @@ double &Pedestrian::Return_Rest_time(){
     return rest_time;
 };
 
+dir2d &Pedestrian::Update_Velocity(dir2d new_velocity){
+    velocity = new_velocity;    
+};
+
+pos2d &Pedestrian::Update_Current_Position(pos2d new_pos){
+    current_position = new_pos;    
+};
+
 }

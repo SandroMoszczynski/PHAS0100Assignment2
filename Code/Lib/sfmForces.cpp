@@ -31,7 +31,7 @@ double &Forces::elipse(std::shared_ptr<Forces>pedesb, double &elipse, double del
     return elipse;
 };
 
-dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces){
+dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces, double delta_t){
     dir2d Force;
     double b;
     double V_zero = 2.1;
@@ -42,7 +42,7 @@ dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces){
     }
     else{
     dir2d unit_direction(unit_length[1] / unit_length.length(), unit_length[0]/ unit_length.length());
-    b = elipse(pedesb,b);
+    b = elipse(pedesb,b, delta_t);
     double Vab = V_zero*exp(-b/sigma);
     Force = unit_direction*((1/sigma)*Vab);
     Forces = Force;
@@ -92,10 +92,10 @@ dir2d &Forces::border_repulsive(dir2d &Forces){
     return Forces;
 };
 
-dir2d &Forces::Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >Pedestrians, dir2d &Forces){
+dir2d &Forces::Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >Pedestrians, dir2d &Forces, double delta_t){
     dir2d rep_force;   
     for(int i = 0;i < Pedestrians.size();++i){
-        dir2d temp_force = repulsive_force(Pedestrians[i],rep_force);
+        dir2d temp_force = repulsive_force(Pedestrians[i],rep_force, delta_t);
         rep_force = rep_force + temp_force;
     }
     dir2d bor_repul = border_repulsive(bor_repul);

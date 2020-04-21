@@ -10,6 +10,10 @@
 
 int main()
 {
+    sfm::dir2d xy = {1,2};
+    std::cout << xy[0] << ", " << xy[1] << std::endl; 
+    sfm::dir2d xy2(xy[1],xy[0]); // WHYY?????
+    std::cout << xy2[0] << ", " << xy2[1] << std::endl;
     std::default_random_engine generator;
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
     for(int i=0;i<20;++i){

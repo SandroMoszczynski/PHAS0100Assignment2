@@ -15,6 +15,7 @@
 set(_command_line_apps
   sfmMyFirstApp
   sfmtesting
+  sfmPedestrianSpawner
 )
 
 foreach(_app ${_command_line_apps})
