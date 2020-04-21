@@ -55,5 +55,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "random": "cpp"
-    }
+    },
+    "git.ignoreLimitWarning": true
 }
