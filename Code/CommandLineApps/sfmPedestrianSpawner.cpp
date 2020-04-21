@@ -33,14 +33,8 @@ int main()
         std::shared_ptr<sfm::Forces> pointer(new sfm::Forces(ped_spawn));
         pedestrians.emplace_back(pointer);
     }
-
     
-    
-    
-
-
     //another for loop over all time
-
     double dt = 0.1; //s
     double finish_time_s = 1;//second
     //std::cin >> dt;
