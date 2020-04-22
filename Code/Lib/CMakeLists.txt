@@ -11,7 +11,6 @@
 #  See LICENSE.txt in the top level directory for details.
 #
 #============================================================================*/
-
 set(PHAS0100ASSIGNMENT2_LIBRARY_NAME phas0100assignment2)
 
 set(PHAS0100ASSIGNMENT2_LIBRARY_SRCS
@@ -21,6 +20,10 @@ set(PHAS0100ASSIGNMENT2_LIBRARY_SRCS
   sfmPedestrian.cpp
   sfmForces.cpp
 )
+
+if (VTK_FOUND)
+  list(APPEND PHAS0100ASSIGNMENT2_LIBRARY_SRCS sfmVisualiser.cpp)
+endif ()
 
 set(PHAS0100ASSIGNMENT2_LIBRARY_HDRS
   sfmExceptionMacro.h
