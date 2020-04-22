@@ -16,6 +16,7 @@ set(_command_line_apps
   sfmMyFirstApp
   sfmtesting
   sfmPedestrianSpawner
+  sfmVisualiser
 )
 
 if (VTK_FOUND)

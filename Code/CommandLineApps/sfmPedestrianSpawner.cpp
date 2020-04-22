@@ -52,7 +52,7 @@ int main()
             if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
                 new_velocity = new_velocity*(v_max*pedestrians[j]->Return_Speed()/new_velocity.length());
                 }
-                sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
+            sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
             sfm::pos2d new_position = {new_velocity[1]+position[1]*dt,new_velocity[0]+position[0]*dt};
             pedestrians[j]->Update_Velocity(new_velocity);
             pedestrians[j]->Update_Current_Position(new_position);

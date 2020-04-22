@@ -54,7 +54,16 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "strstream": "cpp",
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "unordered_set": "cpp",
+        "mutex": "cpp",
+        "thread": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp",
+        "valarray": "cpp"
     },
     "git.ignoreLimitWarning": true
 }
