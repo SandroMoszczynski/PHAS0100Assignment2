@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     // Needed these to define viewer world	
     double world_width_x = 50.0;
     double world_height_y = 10.0;
-    int no_pedestrians = 50;
+    int no_pedestrians = 20;
     //std::cin >> no_pedestrians;
 
     // Create viewer and initialise with required number of pedestrians
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     //  sfm::Visualiser viewer(n_pedestrians, world_width_x, world_height_y, 20.0);
 
     // Example if you want to change the base marker width (in pixels) 
-    //  viewer.SetMarkerSize(8.0);
+    //viewer.SetMarkerSize(1.0);
 
     // //pedestrian 1
     // sfm::pos2d origin1(1,5); 
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 
     //another for loop over all time
     double dt = 0.1; //s
-    double finish_time_s = 100;//second
+    double finish_time_s = 50;//second
     double v_max = 1.3;
     //std::cin >> v_max;
     //std::cin >> dt;
