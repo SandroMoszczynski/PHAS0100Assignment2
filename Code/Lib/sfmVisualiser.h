@@ -1,13 +1,20 @@
 /*=============================================================================
+
   PHAS0100ASSIGNMENT2: PHAS0100 Assignment 2 Social Force Model
+
   Copyright (c) University College London (UCL). All rights reserved.
+
   This software is distributed WITHOUT ANY WARRANTY; without even
   the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
   PURPOSE.
+
   See LICENSE.txt in the top level directory for details.
+
   VTK based viewer for Social Force Model simulation: 12 Apr 2020
       Author: Jim Dobson
+
   See Code/CommandLineApps/sfmVisualiserDemo.cpp for example usage.
+
 =============================================================================*/
 
 #ifndef sfmVisualiser_h
@@ -15,7 +22,7 @@
 
 #include <vector>
 
-#include <vtk-7.1/vtkSmartPointer.h>
+#include "vtkSmartPointer.h"
 #include "sfmBasicTypes.h"
 
 class vtkContextView;
@@ -34,10 +41,15 @@ namespace sfm {
 class Visualiser {
 
   public:
-    Visualiser(unsigned int n_pedestrians = 0, double world_x = POS2D_XWRAP, double world_y = POS2D_YWRAP, double window_scale = 15.0);
+    Visualiser(unsigned int n_pedestrians = 0,
+                  double world_x = POS2D_XWRAP, double world_y = POS2D_YWRAP, 
+		  double window_scale = 15.0);
     ~Visualiser();
-    void CreateWorld(unsigned int n_pedestrians, double width_x, double width_y);
-    bool SetPedestrian(unsigned int i, double xpos, double ypos, double xspeed, double yspeed);
+    void CreateWorld(unsigned int n_pedestrians, 
+		    double width_x, double width_y);
+    bool SetPedestrian(unsigned int i,  
+		       double xpos, double ypos,
+		       double xspeed, double yspeed);
     void UpdateScene();
     void SetWindowSize(double scale); // Adjust window size (pixels/meter), requires CreateWorld to take effect
     void SetMarkerSize(double scale); // Adjust base marker size in pixels 

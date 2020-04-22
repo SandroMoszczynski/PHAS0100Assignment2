@@ -1,3 +1,20 @@
+/*=============================================================================
+
+  PHAS0100ASSIGNMENT2: PHAS0100 Assignment 2 Social Force Model
+
+  Copyright (c) University College London (UCL). All rights reserved.
+
+  This software is distributed WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  PURPOSE.
+
+  See LICENSE.txt in the top level directory for details.
+
+  Example use of VTK based viewer for Social Force Model simulation: 12 Apr 2020
+      Author: Jim Dobson
+
+=============================================================================*/
+
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -5,6 +22,7 @@
 #include <array>
 #include <vector>
 #include <random>
+
 #include "sfmVisualiser.h"
 
 int main(int argc, char** argv){

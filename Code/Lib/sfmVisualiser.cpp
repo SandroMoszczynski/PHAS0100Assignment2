@@ -1,12 +1,18 @@
 /*=============================================================================
+
   PHAS0100ASSIGNMENT2: PHAS0100 Assignment 2 Social Force Model
+
   Copyright (c) University College London (UCL). All rights reserved.
+
   This software is distributed WITHOUT ANY WARRANTY; without even
   the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
   PURPOSE.
+
   See LICENSE.txt in the top level directory for details.
+
   VTK based viewer for Social Force Model simulation: 12 Apr 2020
       Author: Jim Dobson
+
 =============================================================================*/
 
 #include "sfmVisualiser.h"
@@ -14,19 +20,19 @@
 #include <iostream>
 #include <cmath>
 
-#include <vtk-7.1/vtkChartXY.h>
-#include <vtk-7.1/vtkContextScene.h>
-#include <vtk-7.1/vtkContextView.h>
-#include <vtk-7.1/vtkFloatArray.h>
-#include <vtk-7.1/vtkPlotPoints.h>
-#include <vtk-7.1/vtkRenderWindow.h>
-#include <vtk-7.1/vtkRenderWindowInteractor.h>
-#include <vtk-7.1/vtkVariantArray.h>
-#include <vtk-7.1/vtkRenderer.h>
-#include <vtk-7.1/vtkTable.h>
-#include <vtk-7.1/vtkAxis.h>
-#include <vtk-7.1/vtkBrush.h>
-#include <vtk-7.1/vtkPen.h>
+#include <vtkChartXY.h>
+#include <vtkContextScene.h>
+#include <vtkContextView.h>
+#include <vtkFloatArray.h>
+#include <vtkPlotPoints.h>
+#include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkVariantArray.h>
+#include <vtkRenderer.h>
+#include <vtkTable.h>
+#include <vtkAxis.h>
+#include <vtkBrush.h>
+#include <vtkPen.h>
 
 
 namespace sfm
@@ -202,3 +208,4 @@ void Visualiser::SetMarkerSize(double scale){
 
 
 } // end namespace
+
