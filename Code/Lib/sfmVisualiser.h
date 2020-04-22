@@ -22,7 +22,7 @@
 
 #include <vector>
 
-#include "vtkSmartPointer.h"
+#include <vtkSmartPointer.h>
 #include "sfmBasicTypes.h"
 
 class vtkContextView;

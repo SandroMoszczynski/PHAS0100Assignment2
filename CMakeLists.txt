@@ -58,6 +58,29 @@ option(BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 
 
 ######################################################################
+# Visualisation Toolkit for graphical viewer.
+######################################################################
+find_package(VTK COMPONENTS
+  vtkChartsCore
+  vtkCommonCore
+  vtkCommonDataModel
+  vtkInteractionStyle
+  vtkRenderingContext2D
+  vtkRenderingContextOpenGL2
+  vtkRenderingCore
+  vtkRenderingFreeType
+  vtkRenderingGL2PSOpenGL2
+  vtkRenderingOpenGL2
+  vtkViewsContext2D QUIET)
+if (NOT VTK_FOUND)
+  message("Could not find package VTK, will skip visualiser tools ${VTK_NOT_FOUND_MESSAGE}")
+else ()
+  include(${VTK_USE_FILE})
+  list(APPEND ALL_THIRD_PARTY_LIBRARIES ${VTK_LIBRARIES})
+endif()
+
+
+######################################################################
 # Setup Testing (dashboards etc.).
 ######################################################################
 include(sfmSetupTesting)
