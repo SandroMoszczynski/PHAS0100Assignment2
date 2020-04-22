@@ -16,11 +16,10 @@ set(_command_line_apps
   sfmMyFirstApp
   sfmtesting
   sfmPedestrianSpawner
-  sfmVisualiser
 )
 
 if (VTK_FOUND)
-  list(APPEND _command_line_apps sfmVisualiserDemo)
+  list(APPEND _command_line_apps sfmVisualiser)
 endif ()
 
 foreach(_app ${_command_line_apps})
