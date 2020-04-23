@@ -11,7 +11,6 @@
 #include "sfmMyFunctions.h"
 #include "sfmExceptionMacro.h"
 #include "sfmBasicTypes.h"
-#include "sfmForces.h"
 #include "sfmPedestrianSpawner.h"
 
 #include "sfmVisualiser.h"
@@ -34,15 +33,19 @@ int main(int argc, char** argv)
     //viewer.SetMarkerSize(1.0);
 
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
-    std::vector<std::shared_ptr<sfm::Forces> >pedestrians1 = 
-        sfm::Factory::Uniform(pedestrians1,"t", 5, {0,5});
-    std::vector<std::shared_ptr<sfm::Forces> >pedestrians2 = 
-        sfm::Factory::Directional(pedestrians2,5, {2,0});
-    std::vector<std::shared_ptr<sfm::Forces> >pedestrians3 = 
-        sfm::Factory::Spawner(pedestrians3,20);    
-    pedestrian.emplace_back(pedestrians1);
-    pedestrian.emplace_back(pedestrians2);
-    pedestrian.emplace_back(pedestrians3);
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians1 = sfm::Factory::Uniform(pedestrians1,"t", 5, {0,5});
+    for(int point = 0; point < pedestrians1.size();++point){
+        pedestrians.emplace_back(pedestrians1[point]);
+    } 
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians2 = sfm::Factory::Directional(pedestrians2,5, {2,0});
+    for(int point = 0; point < pedestrians2.size();++point){
+        pedestrians.emplace_back(pedestrians2[point]);
+    }     
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians3 = sfm::Factory::Spawner(pedestrians3,20);   
+    for(int point = 0; point < pedestrians3.size();++point){
+        pedestrians.emplace_back(pedestrians3[point]);
+    } 
+    
 
 
     //another for loop over all time
