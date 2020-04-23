@@ -3,13 +3,26 @@
 #include "sfmMyFunctions.h"
 #include "sfmExceptionMacro.h"
 #include "sfmBasicTypes.h"
-#include "sfmForces.h"
 #include <Eigen/Dense>
 #include <unsupported/Eigen/NonLinearOptimization>
 #include <random>
+#include "sfmPedestrianSpawner.h"
 
 int main()
 {
+    // sfm::pos2d origin1(19,2); //b/w 50 and 10
+    // sfm::pos2d destination1(16.285,2.89);
+    // sfm::dir2d velocity1(1.65,0.3354);
+    // sfm::pos2d current_position1(46,6);
+    // double speed1 = 1.15;
+    // double rest_time1 = 1;
+    // sfm::Factory test1(origin1, destination1,velocity1, current_position1, speed1, rest_time1);
+    // std::shared_ptr<sfm::Factory> sp1(new sfm::Factory(test1));
+    // pedestrians.emplace_back(sp1);
+    // pedestrians[0]->    
+    
+
+
     sfm::dir2d xy = {1,2};
     std::cout << xy[0] << ", " << xy[1] << std::endl; 
     sfm::dir2d xy2(xy[1],xy[0]); // WHYY?????

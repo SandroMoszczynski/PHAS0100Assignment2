@@ -7,6 +7,10 @@ namespace sfm{
 dir2d &Forces::desired_direction(dir2d &final_position){
     pos2d current_pos  = Return_Current_Position();
     pos2d destination = Return_Destination();
+    if(destination[0] == 0 && destination[1] == 0){ //this makes the target directional, destination should never be 0,0
+        dir2d velocity = Return_Velocity();
+        destination = {velocity[1],velocity[0]};
+    }
     dir2d length = destination  - current_pos;
     if(length[0] == 0 && length[1] == 0){
         std::cout << "Destination Reached" << std::endl; // should make this message be more individual later
