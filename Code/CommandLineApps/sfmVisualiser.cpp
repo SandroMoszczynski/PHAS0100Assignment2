@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     // Needed these to define viewer world	
     double world_width_x = 50.0;
     double world_height_y = 10.0;
-    int no_pedestrians = 1;
+    int no_pedestrians = 60;
     //std::cin >> no_pedestrians;
 
     // Create viewer and initialise with required number of pedestrians
@@ -44,16 +44,16 @@ int main(int argc, char** argv)
     sfm::dir2d dest_right_y(0.1,9.9);
     sfm::dir2d direc(2,0);
 
-    // std::vector<std::shared_ptr<sfm::Forces> >pedestrians1;
-    // pedestrians1 = sfm::Factory::Distributed(pedestrians1,"Targeted",no_pedestrians/2,dest_left_x,dest_left_y,left_side_x,left_side_y);
-    // for(int point = 0; point < pedestrians1.size();++point){
-    //     pedestrians.emplace_back(pedestrians1[point]);
-    // } 
-    // std::vector<std::shared_ptr<sfm::Forces> >pedestrians2;
-    // pedestrians2 = sfm::Factory::Distributed(pedestrians2,"Targeted",no_pedestrians/2,dest_right_x,dest_right_y,right_side_x,right_side_y);
-    // for(int point = 0; point < pedestrians2.size();++point){
-    //     pedestrians.emplace_back(pedestrians2[point]);
-    // }   
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians1;
+    pedestrians1 = sfm::Factory::Distributed(pedestrians1,"Targeted",no_pedestrians/2,dest_left_x,dest_left_y,left_side_x,left_side_y);
+    for(int point = 0; point < pedestrians1.size();++point){
+        pedestrians.emplace_back(pedestrians1[point]);
+    } 
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians2;
+    pedestrians2 = sfm::Factory::Distributed(pedestrians2,"Targeted",no_pedestrians/2,dest_right_x,dest_right_y,right_side_x,right_side_y);
+    for(int point = 0; point < pedestrians2.size();++point){
+        pedestrians.emplace_back(pedestrians2[point]);
+    }   
     //pedestrians = sfm::Factory::Directional(pedestrians,no_pedestrians,{2,0},{1,1},{5,5},{1,1},{0.1,0.1}); 
     //pedestrians = sfm::Factory::Distributed(pedestrians,"Directional",no_pedestrians,direc,direc,left_side_x,left_side_y);
     // std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 
     //another for loop over all time
     double dt = 0.1; //s
-    double finish_time_s = 10;//second
+    double finish_time_s = 100;//second
     double v_max = 1.3;
     //std::cin >> v_max;
     //std::cin >> dt;
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
         viewer.UpdateScene();
 
         // Sleep for a bit so can see visualiser updating 
-        std::this_thread::sleep_for (std::chrono::milliseconds(100));
+        std::this_thread::sleep_for (std::chrono::milliseconds(10));
 
     } 
 
