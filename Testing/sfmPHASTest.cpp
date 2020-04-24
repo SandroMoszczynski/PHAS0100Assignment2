@@ -1,6 +1,6 @@
 #include "catch.hpp"
 #include "sfmCatchMain.h"
-#include "sfmForces.h"
+#include "sfmPedestrianSpawner.h"
 #include <iostream>
 #include <vector>
 
@@ -99,5 +99,114 @@ TEST_CASE( "unit tests for forces class", "[Forces Class]") {
     REQUIRE( test_border_repulsive_bot[0] > 0);
     REQUIRE( test_resultant[1] != 0);
 }
+
+TEST_CASE( "unit tests for Factory class", "[Factory Class]") {
+    //test for creating dir2d
+    sfm::dir2d test_R_Dir2d;
+    test_R_Dir2d = sfm::Factory::R_Dir2d(test_R_Dir2d,2,2,1,2);
+    //test for creating pos2d
+    sfm::pos2d test_R_Pos2d;
+    test_R_Pos2d = sfm::Factory::R_Pos2d(test_R_Pos2d,52,52,1,2);
+    //test for creating double
+    double test_R_Doub;
+    test_R_Doub = sfm::Factory::R_Doub(test_R_Doub,5,5);
+    //test for creating random spawned(), no spawned, dis is always betwee min and max
+    std::vector<std::shared_ptr<sfm::Forces> >test_ped_spawner;
+    test_ped_spawner = sfm::Factory::Spawner(test_ped_spawner,100);
+    int error_count = 0;
+    for(int i = 0; i<test_ped_spawner.size();++i){
+        if(test_ped_spawner[i]->Return_Current_Position()[1] != test_ped_spawner[i]->Return_Origin()[1]){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Current_Position()[0] != test_ped_spawner[i]->Return_Origin()[0]){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Origin()[1] < 0.1 || test_ped_spawner[i]->Return_Origin()[1] > 49.9){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Origin()[0] < 0.1 || test_ped_spawner[i]->Return_Origin()[0] > 9.9){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Velocity()[1] < -1.5 || test_ped_spawner[i]->Return_Velocity()[1] > 1.5){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Velocity()[0] < -1.5 || test_ped_spawner[i]->Return_Velocity()[0] > 1.5){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Destination()[1] < 0.1 || test_ped_spawner[i]->Return_Destination()[1] > 49.9){
+            error_count += 1;
+        }
+        if(test_ped_spawner[i]->Return_Destination()[0] < 0.1 || test_ped_spawner[i]->Return_Destination()[0] > 9.9){
+            error_count += 1;
+        }    
+        if(test_ped_spawner[i]->Return_Speed() < 0.1 || test_ped_spawner[i]->Return_Speed() > 1.5){
+            error_count += 1;
+        } 
+        if(test_ped_spawner[i]->Return_Rest_time() < 0.1 || test_ped_spawner[i]->Return_Rest_time() > 1.5){
+            error_count += 1;
+        }            
+    }
+    //test for creating uniform(), uniform spread
+    std::vector<std::shared_ptr<sfm::Forces> >test_ped_uniform;
+    sfm::dir2d test_dest_x(1,2);
+    sfm::dir2d test_dest_y(0.1,9.9);  
+    test_ped_uniform = sfm::Factory::Uniform(test_ped_uniform,"Targeted",100,test_dest_x,test_dest_y);
+    double origin_dist_x = 0;
+    double origin_dist_y = 0;
+    double velocity_x = 0;
+    double velocity_y = 0;
+    double speed = 0;
+    for(int j=0;j<test_ped_uniform.size();++j){
+        origin_dist_x += test_ped_uniform[j]->Return_Origin()[1];
+        origin_dist_y += test_ped_uniform[j]->Return_Origin()[0];
+        velocity_x += test_ped_uniform[j]->Return_Velocity()[1];
+        velocity_y += test_ped_uniform[j]->Return_Velocity()[0];   
+        speed +=  test_ped_uniform[j]->Return_Speed();
+    }
+    //test for creating distributed(), sets at one side, test error occurs
+    std::vector<std::shared_ptr<sfm::Forces> >test_ped_dis_dir;
+    sfm::dir2d test_start_pos_x(1,1);
+    sfm::dir2d test_start_pos_y(0.1,9.9);
+    sfm::dir2d test_direction(1,0);
+    test_ped_dis_dir = sfm::Factory::Distributed(test_ped_dis_dir,"Directional",10,test_direction,test_direction,test_start_pos_x,test_start_pos_y);
+    double y_distribution = 0; 
+    for(int j=0;j<test_ped_dis_dir.size();++j){
+        y_distribution += test_ped_dis_dir[j]->Return_Origin()[0];
+    }
+    //test that directional moves along a straight line
+    std::vector<std::shared_ptr<sfm::Forces> >test_ped_directional;
+    test_ped_directional = sfm::Factory::Directional(test_ped_directional,1,{1,0},{1,1},{5,5},{1,1},{1,1});
+    double dt = 0.1;
+    for(int t=0; t<10/dt;++t){
+        sfm::dir2d temp_force = test_ped_directional[0]->Resultant_force(test_ped_directional,temp_force, dt);
+        sfm::dir2d  new_velocity = (temp_force*dt) + test_ped_directional[0]->Return_Velocity();
+        if(new_velocity.length() > 1.3*test_ped_directional[0]->Return_Speed()){
+            new_velocity = new_velocity*(1.3*test_ped_directional[0]->Return_Speed()/new_velocity.length());
+            }
+        sfm::dir2d position(test_ped_directional[0]->Return_Current_Position()[1],test_ped_directional[0]->Return_Current_Position()[0]);
+        sfm::pos2d new_position = {position[1]+(new_velocity[1]*dt),(position[0]+new_velocity[0]*dt)};
+        test_ped_directional[0]->Update_Velocity(new_velocity);
+        test_ped_directional[0]->Update_Current_Position(new_position);   
+    }
+    REQUIRE(test_R_Dir2d[1] == 2);
+    REQUIRE(test_R_Dir2d[0] < 2);
+    REQUIRE(test_R_Dir2d[0] > 1);
+    REQUIRE(test_R_Pos2d[1] == 2);
+    REQUIRE(test_R_Pos2d[0] < 2);
+    REQUIRE(test_R_Pos2d[0] > 1);
+    REQUIRE(test_R_Doub == 5);
+    REQUIRE(test_ped_spawner.size() == 100);
+    REQUIRE(error_count == 0);
+    REQUIRE(origin_dist_x/100-24.4 < 5);
+    REQUIRE(origin_dist_y/100-4.9 < 1);
+    REQUIRE(velocity_x/100 == 0);
+    REQUIRE(velocity_y/100 == 0);
+    REQUIRE(speed/100-0.7 < 0.2);
+    REQUIRE(test_ped_dis_dir[0]->Return_Origin()[1] == 1);
+    REQUIRE(y_distribution/100-4.9 < 1);
+    REQUIRE(test_ped_directional[0]->Return_Current_Position()[1] > 8);
+}
+
+
 
 }

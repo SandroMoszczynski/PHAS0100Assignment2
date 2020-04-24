@@ -16,6 +16,6 @@ class Forces : public Pedestrian {
     dir2d &repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces, double delta_t = 2);
     double &fov(dir2d ata_force,dir2d des_dir, double &fov, double phi = 3.49066,double c = 0.5);    
     dir2d &border_repulsive(dir2d &Forces);
-    dir2d &Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >, dir2d &Forces, double delta_t = 2);
+    dir2d &Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >Pedestrians, dir2d &Forces, double delta_t = 2);
 };
 }
