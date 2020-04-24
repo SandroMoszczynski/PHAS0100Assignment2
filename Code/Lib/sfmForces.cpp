@@ -9,7 +9,6 @@ dir2d &Forces::desired_direction(dir2d &final_position){
     pos2d destination = Return_Destination();
     if(destination[0] == 0 && destination[1] == 0){ //this makes the target directional, destination should never be 0,0
         dir2d velocity = Return_Velocity();
-        // std::cout << "is this working?" << std::endl;
         destination = {current_pos[1]+velocity[1],current_pos[0]+velocity[0]};
     }
     dir2d length = destination  - current_pos;

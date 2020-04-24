@@ -19,9 +19,9 @@ class Factory : public Forces {
     static std::vector<std::shared_ptr<sfm::Forces>> &Spawner(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
-        double vel_min_x = 0.1,
+        double vel_min_x = -1.5,
         double vel_max_x = 1.5,
-        double vel_min_y = 0.1,
+        double vel_min_y = -1.5,
         double vel_max_y = 1.5,
         double speed_min = 0.1,
         double speed_max = 1.5,
@@ -34,7 +34,7 @@ class Factory : public Forces {
         double y_min_dest = 0.1, 
         double y_max_dest = 9.9, 
         double rest_min = 0.1,
-        double rest_max = 1.5
+        double rest_max = 0.5
     ); //left defaults to make it easy to just spawn random pedestrians
     static std::vector<std::shared_ptr<sfm::Forces>> &Targeted(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
@@ -44,7 +44,7 @@ class Factory : public Forces {
         dir2d x_values = {0.1,49.9}, 
         dir2d y_values = {0.1,9.9},
         dir2d speed = {0.1,1.5}, //min,max
-        dir2d rest = {0.1,1.5} // min,max   
+        dir2d rest = {0.1,0.5} // min,max   
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Directional(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
@@ -53,7 +53,7 @@ class Factory : public Forces {
         dir2d x_values = {0.1,49.9},
         dir2d y_values = {0.1,9.9},
         dir2d speed = {0.1,1.5},
-        dir2d rest = {0.1,1.5}
+        dir2d rest = {0.1,0.5}
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Uniform(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
