@@ -20,6 +20,7 @@ set(_command_line_apps
 
 if (VTK_FOUND)
   list(APPEND _command_line_apps sfmVisualiser)
+  list(APPEND _command_line_apps sfmVisualiserDemo)
 endif ()
 
 foreach(_app ${_command_line_apps})

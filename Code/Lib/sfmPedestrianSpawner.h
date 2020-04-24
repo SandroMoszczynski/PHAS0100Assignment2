@@ -39,34 +39,37 @@ class Factory : public Forces {
     static std::vector<std::shared_ptr<sfm::Forces>> &Targeted(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
-        pos2d Destination,
-        pos2d min_values = {0.1,0.1}, 
-        pos2d max_values = {49.9,9.9},
-        pos2d speed = {0.1,1.5}, //min,max
-        pos2d rest = {0.1,1.5} // min,max
+        dir2d Destination_x,
+        dir2d Destination_y,
+        dir2d x_values = {0.1,49.9}, 
+        dir2d y_values = {0.1,9.9},
+        dir2d speed = {0.1,1.5}, //min,max
+        dir2d rest = {0.1,1.5} // min,max   
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Directional(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
         dir2d Direction,
-        pos2d min_values = {0.1,0.1},
-        pos2d max_values = {49.9,9.9},
-        pos2d speed = {0.1,1.5},
-        pos2d rest = {0.1,1.5}
+        dir2d x_values = {0.1,49.9},
+        dir2d y_values = {0.1,9.9},
+        dir2d speed = {0.1,1.5},
+        dir2d rest = {0.1,1.5}
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Uniform(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         std::string Type_pedestrian,
         int no_pedestrians,
-        pos2d destination
+        dir2d Destination_x,
+        dir2d Destination_y
     ); //Type_pedestrian = Targeted or Directional
     static std::vector<std::shared_ptr<sfm::Forces>> &Distributed(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         std::string Type_pedestrian,
         int no_pedestrians,
-        pos2d destination,
-        pos2d min_values,
-        pos2d max_values
+        dir2d Destination_x,
+        dir2d Destination_y,
+        dir2d x_values,
+        dir2d y_values
     );
 };
 }
