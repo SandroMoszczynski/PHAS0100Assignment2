@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <chrono>
 #include <ctime>
+#include <fstream>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -75,6 +76,10 @@ std::vector<std::shared_ptr<sfm::Forces> > &Create_Pedestrian(std::vector<std::s
 
 int main()
 {
+    std::ofstream Results;
+    Results.open("Benchmarking.txt");
+    Results << "Testing done with 1000 pedestrians \n"
+            << "For time 100 seconds at intervals of 0.1s\n";
     std::cout   << "Testing done with 1000 pedestrians \n"
                 << "For time 100 seconds at intervals of 0.1s\n" << std::endl;
 
@@ -93,11 +98,17 @@ int main()
             << "Wall clock time passed no mp: "
             << std::chrono::duration<double, std::milli>(t_end1-t_start1).count()
             << " ms\n";
+    Results << std::fixed << std::setprecision(2) << "CPU time used no mp: "
+            << 1000.0 * (c_end1-c_start1) / CLOCKS_PER_SEC << " ms\n"
+            << "Wall clock time passed no mp: "
+            << std::chrono::duration<double, std::milli>(t_end1-t_start1).count()
+            << " ms\n";
 
     //now iterate with incresing number of threads, to 28, max number for my pc
     for(int num_threads = 1;num_threads<29;++num_threads)
     {
         std::cout << "Threadcount: " << num_threads << std::endl;
+        Results << "Threadcount: " << num_threads << " \n";
         #ifdef _OPENMP
         omp_set_num_threads(num_threads);
         #endif
@@ -124,6 +135,12 @@ int main()
                 << "Wall clock time passed: "
                 << std::chrono::duration<double, std::milli>(t_end-t_start).count()
                 << " ms\n";
+        Results << std::fixed << std::setprecision(2) << "CPU time used no mp: "
+            << 1000.0 * (c_end1-c_start1) / CLOCKS_PER_SEC << " ms\n"
+            << "Wall clock time passed no mp: "
+            << std::chrono::duration<double, std::milli>(t_end1-t_start1).count()
+            << " ms\n";
     }
+    Results.close();
     return 0;
 }
