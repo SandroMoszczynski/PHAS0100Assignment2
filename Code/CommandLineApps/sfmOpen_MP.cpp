@@ -91,7 +91,9 @@ int main()
     }
     
     std::ofstream Results;
-    Results.open("Benchmarking.txt");
+    std::stringstream FileName;
+    FileName << "Benchmarking_" << no_pedestrians << "_" << finish_time_s << ".txt";
+    Results.open(FileName.str());
     Results << "Testing done with " << no_pedestrians << " pedestrians  \n"
             << "For time " << finish_time_s << " seconds at intervals of 0.1s\n";
     std::cout   << "Testing done with " << no_pedestrians << " pedestrians \n"
@@ -118,9 +120,9 @@ int main()
             << 1000.0 * (c_end1-c_start1) / CLOCKS_PER_SEC << " ," 
             << std::chrono::duration<double, std::milli>(t_end1-t_start1).count() <<"\n";
 
-    //now iterate with incresing number of threads, to 28, max number for my pc
+    //now iterate with incresing number of thread with max number for each pc
 
-    int max_threads = omp_get_max_threads(); // throws an error but works
+    int max_threads = omp_get_max_threads(); // throws an error on vscode but works
 
     for(int num_threads = 1;num_threads<(max_threads+1);++num_threads)
     {
@@ -136,6 +138,7 @@ int main()
         std::clock_t c_start = std::clock();
         auto t_start = std::chrono::high_resolution_clock::now();
         pedestrians = Create_Pedestrian(pedestrians,no_pedestrians);
+        sfm::pos2d origin_before = pedestrians[0]->Return_Origin();
         #pragma omp parallel shared(pedestrians)
         {
             #pragma single nowait
