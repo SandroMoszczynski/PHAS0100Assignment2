@@ -7,103 +7,184 @@
 #include <unsupported/Eigen/NonLinearOptimization>
 #include <random>
 #include "sfmPedestrianSpawner.h"
+#include <iomanip>
+#include <chrono>
+#include <ctime>
+
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 int main()
 {
+    #ifdef _OPENMP
+    omp_set_dynamic(14);
+    #endif
 
-    // sfm::pos2d origin1(19,2); //b/w 50 and 10
-    // sfm::pos2d destination1(16.285,2.89);
-    // sfm::dir2d velocity1(1.65,0.3354);
-    // sfm::pos2d current_position1(46,6);
-    // double speed1 = 1.15;
-    // double rest_time1 = 1;
-    // sfm::Factory test1(origin1, destination1,velocity1, current_position1, speed1, rest_time1);
-    // std::shared_ptr<sfm::Factory> sp1(new sfm::Factory(test1));
-    // pedestrians.emplace_back(sp1);
-    // pedestrians[0]->   
+    // std::cout << omp_get_num_threads() << std::endl;
+    int no_pedestrians;
+    std::cout << "no pedestrians;" << std::endl; //150 per thread seems to max out each thread, break them into batches of 150
+    std::cin >> no_pedestrians;
+    std::cout << "start" << std::endl;
 
-    // double x_min = 2;
-    // double x_max = 2;
-    // double y_min = 5;
-    // double y_max = 5;
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
+    std::clock_t c_start = std::clock();
+    auto t_start = std::chrono::high_resolution_clock::now();
     
-    // sfm::dir2d testa = sfm::Factory::R_Dir2d(testa,x_min,x_max,y_min,y_max);
-    // sfm::pos2d testb = sfm::Factory::R_Pos2d(testb,x_min,x_max,y_min,y_max);
-    // double testc = sfm::Factory::R_Doub(testc,1,1);
+    sfm::dir2d left_side_x(1,1);
+    sfm::dir2d left_side_y(0.1,9.9);
+    sfm::dir2d dest_left_x(48,49);
+    sfm::dir2d dest_left_y(0.1,9.9);
+    sfm::dir2d right_side_x(48,49);
+    sfm::dir2d right_side_y(0.1,9.9);
+    sfm::dir2d dest_right_x(1,2);
+    sfm::dir2d dest_right_y(0.1,9.9);
+    sfm::dir2d direc1(1,0);
+    sfm::dir2d direc2(-1,0);
 
-    // std::cout << testa[1] << ", " << testa[0] << " testa" << std::endl;
-    // std::cout << testb[1] << ", " << testb[0] << " testb" << std::endl;
-    // std::cout << testc << " testc" << std::endl;
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians1;
+    pedestrians1 = sfm::Factory::Directional(pedestrians1,no_pedestrians/2,direc1,left_side_x,left_side_y);
+    for(int point = 0; point < pedestrians1.size();++point){
+        pedestrians.emplace_back(pedestrians1[point]);
+    } 
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians2;
+    pedestrians2 = sfm::Factory::Directional(pedestrians2,no_pedestrians/2,direc2,right_side_x,right_side_y);
+    for(int point = 0; point < pedestrians2.size();++point){
+        pedestrians.emplace_back(pedestrians2[point]);
+    }   
+    double dt = 0.1; //s
+    double finish_time_s = 10;//second
+    double v_max = 1.3;
 
-    // int no_pedestrians = 5;
-    // std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
-    // //pedestrians = sfm::Factory::Spawner(pedestrians,20); 
-    // pedestrians = sfm::Factory::Spawner(pedestrians, no_pedestrians,
-    //     0.1,
-    //     1.5,
-    //     0.1,
-    //     1.5,
-    //     0.1,
-    //     1.5,
-    //     0.1, 
-    //     0.5, 
-    //     0.1, 
-    //     9.9,
-    //     48, 
-    //     49, 
-    //     0.1, 
-    //     9.9, 
-    //     0.1,
-    //     1.5
-    // );
-    //sfm::pos2d left_side_min = {0.1,0.1};
-    //sfm::pos2d left_side_max = {0.5,9.9};
-    sfm::dir2d dest_final = {49,45};
-    std::cout << dest_final[1] << dest_final[0] <<std::endl;
-    //pedestrians = sfm::Factory::Distributed(pedestrians,"Targeted",no_pedestrians,dest_final, left_side_min,left_side_max); 
-    //pedestrians = sfm::Factory::Targeted(pedestrians,no_pedestrians,dest_final);
+    //open mp testing
+    
+    #pragma omp parallel shared(pedestrians)
+    for(int t=0; t<(finish_time_s/dt);++t){
+        for(int j=0; j<pedestrians.size();++j){
+            sfm::dir2d temp_force;
+            #pragma omp tasks firstprivate(temp_force) shared(pedestrians[j])
+            {
+                temp_force = pedestrians[j]->Resultant_force(pedestrians,temp_force, dt);
+                sfm::dir2d  new_velocity = (temp_force*dt) + pedestrians[j]->Return_Velocity();
+                //std::cout << new_velocity.length() << ", " << v_max*pedestrians[1]->Return_Speed() << std::endl;
+                if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
+                    new_velocity = new_velocity*(v_max*pedestrians[j]->Return_Speed()/new_velocity.length());
+                    }
+                sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
+                sfm::pos2d new_position = {position[1]+(new_velocity[1]*dt),(position[0]+new_velocity[0]*dt)};
+                pedestrians[j]->Update_Velocity(new_velocity);
+                pedestrians[j]->Update_Current_Position(new_position);
+            } 
+        }
+    } 
 
-    // for(int i = 0;i<pedestrians.size();++i){
-    //     std::cout << pedestrians[i]->Return_Current_Position()[1]   << " ," << pedestrians[i]->Return_Current_Position()[0]     << " current pos pedes:" << i << std::endl;
-    //     std::cout << pedestrians[i]->Return_Origin()[1]             << " ," << pedestrians[i]->Return_Origin()[0]               << " origin pedes:" << i  << std::endl;
-    //     std::cout << pedestrians[i]->Return_Velocity()[1]           << " ," << pedestrians[i]->Return_Velocity()[0]             << " velocity pedes:" << i  << std::endl;
-    //     std::cout << pedestrians[i]->Return_Destination()[1]        << " ," << pedestrians[i]->Return_Destination()[0]          << " destination pedes:" << i  << std::endl;
-    //     std::cout << pedestrians[i]->Return_Speed()                 << " ," << pedestrians[i]->Return_Rest_time()               << " speed,rest time pedes:" << i  << std::endl;
-    // }
- 
-    // sfm::dir2d xy = {1,2};
-    // std::cout << xy[0] << ", " << xy[1] << std::endl; 
-    // sfm::dir2d xy2(xy[1],xy[0]); // WHYY?????
-    // std::cout << xy2[0] << ", " << xy2[1] << std::endl;
-    // std::default_random_engine generator;
-    // std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
-    // for(int i=0;i<20;++i){
-    //     std::uniform_real_distribution<double> origin_gen_x(0,50);  
-    //     std::uniform_real_distribution<double> origin_gen_y(0,10);   
-    //     std::uniform_real_distribution<double> destination_gen_x(0,50);  
-    //     std::uniform_real_distribution<double> destination_gen_y(0,10);  
-    //     std::uniform_real_distribution<double> velicty_gen(0,1);
-    //     std::uniform_real_distribution<double> current_position_gen(0,10);  
-    //     std::uniform_real_distribution<double> speed_gen(0.1,2);   
-    //     std::uniform_real_distribution<double> resttime_gen(0.1,2);  
-    //     sfm::pos2d origin = {origin_gen_x(generator),origin_gen_y(generator)}; //b/w 50 and 10
-    //     sfm::pos2d destination = {destination_gen_x(generator), destination_gen_y(generator)};
-    //     sfm::dir2d velocity = {velicty_gen(generator), velicty_gen(generator)};
-    //     sfm::pos2d current_position = {current_position_gen(generator), current_position_gen(generator)};
-    //     double speed = speed_gen(generator);
-    //     double rest_time = resttime_gen(generator);
-    //     sfm::Forces ped_spawn(origin,destination,velocity,current_position,speed,rest_time);
-    //     std::shared_ptr<sfm::Forces> pointer(new sfm::Forces(ped_spawn));
-    //     pedestrians.emplace_back(pointer);
-    //}
-    //sfm::dir2d totalforce = pedestrians[0]->Resultant_force(pedestrians,totalforce);
-    //std::cout << totalforce[1] << std::endl;
-    //std::cout << totalforce[0] << std::endl;
-    //double speed = pedestrians[12]->Return_Speed();
-    //std::cout << speed << std::endl;
 
+    std::clock_t c_end = std::clock();
+    auto t_end = std::chrono::high_resolution_clock::now();
+    std::cout << "stop" << std::endl;
+    std::cout << std::fixed << std::setprecision(2) << "CPU time used: "
+              << 1000.0 * (c_end-c_start) / CLOCKS_PER_SEC << " ms\n"
+              << "Wall clock time passed: "
+              << std::chrono::duration<double, std::milli>(t_end-t_start).count()
+              << " ms\n";
     return 0;
 }
+
+
+
+
+
+// sfm::pos2d origin1(19,2); //b/w 50 and 10
+// sfm::pos2d destination1(16.285,2.89);
+// sfm::dir2d velocity1(1.65,0.3354);
+// sfm::pos2d current_position1(46,6);
+// double speed1 = 1.15;
+// double rest_time1 = 1;
+// sfm::Factory test1(origin1, destination1,velocity1, current_position1, speed1, rest_time1);
+// std::shared_ptr<sfm::Factory> sp1(new sfm::Factory(test1));
+// pedestrians.emplace_back(sp1);
+// pedestrians[0]->   
+
+// double x_min = 2;
+// double x_max = 2;
+// double y_min = 5;
+// double y_max = 5;
+
+// sfm::dir2d testa = sfm::Factory::R_Dir2d(testa,x_min,x_max,y_min,y_max);
+// sfm::pos2d testb = sfm::Factory::R_Pos2d(testb,x_min,x_max,y_min,y_max);
+// double testc = sfm::Factory::R_Doub(testc,1,1);
+
+// std::cout << testa[1] << ", " << testa[0] << " testa" << std::endl;
+// std::cout << testb[1] << ", " << testb[0] << " testb" << std::endl;
+// std::cout << testc << " testc" << std::endl;
+
+// int no_pedestrians = 5;
+// std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
+// //pedestrians = sfm::Factory::Spawner(pedestrians,20); 
+// pedestrians = sfm::Factory::Spawner(pedestrians, no_pedestrians,
+//     0.1,
+//     1.5,
+//     0.1,
+//     1.5,
+//     0.1,
+//     1.5,
+//     0.1, 
+//     0.5, 
+//     0.1, 
+//     9.9,
+//     48, 
+//     49, 
+//     0.1, 
+//     9.9, 
+//     0.1,
+//     1.5
+// );
+//sfm::pos2d left_side_min = {0.1,0.1};
+//sfm::pos2d left_side_max = {0.5,9.9};
+// sfm::dir2d dest_final = {49,45};
+// std::cout << dest_final[1] << dest_final[0] <<std::endl;
+//pedestrians = sfm::Factory::Distributed(pedestrians,"Targeted",no_pedestrians,dest_final, left_side_min,left_side_max); 
+//pedestrians = sfm::Factory::Targeted(pedestrians,no_pedestrians,dest_final);
+
+// for(int i = 0;i<pedestrians.size();++i){
+//     std::cout << pedestrians[i]->Return_Current_Position()[1]   << " ," << pedestrians[i]->Return_Current_Position()[0]     << " current pos pedes:" << i << std::endl;
+//     std::cout << pedestrians[i]->Return_Origin()[1]             << " ," << pedestrians[i]->Return_Origin()[0]               << " origin pedes:" << i  << std::endl;
+//     std::cout << pedestrians[i]->Return_Velocity()[1]           << " ," << pedestrians[i]->Return_Velocity()[0]             << " velocity pedes:" << i  << std::endl;
+//     std::cout << pedestrians[i]->Return_Destination()[1]        << " ," << pedestrians[i]->Return_Destination()[0]          << " destination pedes:" << i  << std::endl;
+//     std::cout << pedestrians[i]->Return_Speed()                 << " ," << pedestrians[i]->Return_Rest_time()               << " speed,rest time pedes:" << i  << std::endl;
+// }
+
+// sfm::dir2d xy = {1,2};
+// std::cout << xy[0] << ", " << xy[1] << std::endl; 
+// sfm::dir2d xy2(xy[1],xy[0]); // WHYY?????
+// std::cout << xy2[0] << ", " << xy2[1] << std::endl;
+// std::default_random_engine generator;
+// std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
+// for(int i=0;i<20;++i){
+//     std::uniform_real_distribution<double> origin_gen_x(0,50);  
+//     std::uniform_real_distribution<double> origin_gen_y(0,10);   
+//     std::uniform_real_distribution<double> destination_gen_x(0,50);  
+//     std::uniform_real_distribution<double> destination_gen_y(0,10);  
+//     std::uniform_real_distribution<double> velicty_gen(0,1);
+//     std::uniform_real_distribution<double> current_position_gen(0,10);  
+//     std::uniform_real_distribution<double> speed_gen(0.1,2);   
+//     std::uniform_real_distribution<double> resttime_gen(0.1,2);  
+//     sfm::pos2d origin = {origin_gen_x(generator),origin_gen_y(generator)}; //b/w 50 and 10
+//     sfm::pos2d destination = {destination_gen_x(generator), destination_gen_y(generator)};
+//     sfm::dir2d velocity = {velicty_gen(generator), velicty_gen(generator)};
+//     sfm::pos2d current_position = {current_position_gen(generator), current_position_gen(generator)};
+//     double speed = speed_gen(generator);
+//     double rest_time = resttime_gen(generator);
+//     sfm::Forces ped_spawn(origin,destination,velocity,current_position,speed,rest_time);
+//     std::shared_ptr<sfm::Forces> pointer(new sfm::Forces(ped_spawn));
+//     pedestrians.emplace_back(pointer);
+//}
+//sfm::dir2d totalforce = pedestrians[0]->Resultant_force(pedestrians,totalforce);
+//std::cout << totalforce[1] << std::endl;
+//std::cout << totalforce[0] << std::endl;
+//double speed = pedestrians[12]->Return_Speed();
+//std::cout << speed << std::endl;
+
 
 
 // sfm::pos2d origin1(19,2); //b/w 50 and 10

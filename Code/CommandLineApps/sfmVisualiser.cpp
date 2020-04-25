@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     // Needed these to define viewer world	
     double world_width_x = 50.0;
     double world_height_y = 10.0;
-    int no_pedestrians = 60;
+    int no_pedestrians = 100;
     //std::cin >> no_pedestrians;
 
     // Create viewer and initialise with required number of pedestrians
@@ -33,6 +33,20 @@ int main(int argc, char** argv)
     //viewer.SetMarkerSize(1.0);
 
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
+    //pedestrians = sfm::Factory::Spawner(pedestrians, no_pedestrians);
+    // pedestrians = sfm::Factory::Spawner(pedestrians, no_pedestrians,
+    // 1.5, 1.5, 0, 0,
+    // 1, 1.5,
+    // 0.1, 49.9, 0.1, 9.9,
+    // 0, 0, 0, 0,
+    // 0.1, 0.1);
+
+    // pedestrians = sfm::Factory::Spawner(pedestrians, no_pedestrians,
+    // 1.5, 1.5, 0, 0,
+    // 1, 1.5,
+    // 0.1, 49.9, 0.1, 9.9,
+    // 0, 0, 0, 0,
+    // 0.1, 0.1);
 
     sfm::dir2d left_side_x(1,1);
     sfm::dir2d left_side_y(0.1,9.9);
@@ -42,20 +56,21 @@ int main(int argc, char** argv)
     sfm::dir2d right_side_y(0.1,9.9);
     sfm::dir2d dest_right_x(1,2);
     sfm::dir2d dest_right_y(0.1,9.9);
-    sfm::dir2d direc(2,0);
+    sfm::dir2d direc1(1,0);
+    sfm::dir2d direc2(-1,0);
 
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians1;
-    pedestrians1 = sfm::Factory::Distributed(pedestrians1,"Targeted",no_pedestrians/2,dest_left_x,dest_left_y,left_side_x,left_side_y);
+    pedestrians1 = sfm::Factory::Directional(pedestrians1,no_pedestrians/2,direc1,left_side_x,left_side_y);
     for(int point = 0; point < pedestrians1.size();++point){
         pedestrians.emplace_back(pedestrians1[point]);
     } 
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians2;
-    pedestrians2 = sfm::Factory::Distributed(pedestrians2,"Targeted",no_pedestrians/2,dest_right_x,dest_right_y,right_side_x,right_side_y);
+    pedestrians2 = sfm::Factory::Directional(pedestrians2,no_pedestrians/2,direc2,right_side_x,right_side_y);
     for(int point = 0; point < pedestrians2.size();++point){
         pedestrians.emplace_back(pedestrians2[point]);
     }   
-    //pedestrians = sfm::Factory::Directional(pedestrians,no_pedestrians,{2,0},{1,1},{5,5},{1,1},{0.1,0.1}); 
-    //pedestrians = sfm::Factory::Distributed(pedestrians,"Directional",no_pedestrians,direc,direc,left_side_x,left_side_y);
+    // pedestrians = sfm::Factory::Directional(pedestrians,no_pedestrians,{2,0},{1,1},{5,5},{1,1},{0.1,0.1}); 
+    // pedestrians = sfm::Factory::Distributed(pedestrians,"Directional",no_pedestrians,direc,direc,left_side_x,left_side_y);
     // std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
     // pedestrians = sfm::Factory::Distributed(pedestrians,"Targeted",no_pedestrians,dest_final,left_side_min,left_side_max);      
 

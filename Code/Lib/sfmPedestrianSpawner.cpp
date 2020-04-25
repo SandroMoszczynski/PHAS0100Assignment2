@@ -58,7 +58,7 @@ std::vector<std::shared_ptr<sfm::Forces>> &Factory::Spawner(
     for(int i=0;i<no_pedestrians;++i){ 
         sfm::pos2d origin = R_Pos2d(origin,x_start_min,x_start_max,y_start_min,y_start_max);  
         sfm::pos2d destination = R_Pos2d(destination,x_dest_min,x_dest_max,y_dest_min,y_dest_max);
-        sfm::dir2d velocity = R_Dir2d(velocity, vel_min_x,vel_max_x,vel_min_x,vel_max_x);
+        sfm::dir2d velocity = R_Dir2d(velocity, vel_min_x,vel_max_x,vel_min_y,vel_max_y);
         sfm::pos2d current_position = origin;
         double speed = R_Doub(speed, speed_min, speed_max);
         double rest_time = R_Doub(rest_time, rest_min,rest_max);

@@ -7,17 +7,22 @@ namespace sfm{
 dir2d &Forces::desired_direction(dir2d &final_position){
     pos2d current_pos  = Return_Current_Position();
     pos2d destination = Return_Destination();
+    dir2d length;
     if(destination[0] == 0 && destination[1] == 0){ //this makes the target directional, destination should never be 0,0
         dir2d velocity = Return_Velocity();
-        destination = {current_pos[1]+velocity[1],current_pos[0]+velocity[0]};
+        length = velocity;
     }
-    dir2d length = destination  - current_pos;
+    else{
+        length = destination  - current_pos;
+    }
     if(length[0] == 0 && length[1] == 0){
         std::cout << "Destination Reached" << std::endl; // should make this message be more individual later
         final_position= {current_pos[1],current_pos[0]};
     }
-    dir2d finalpos(length[1] / length.length(), length[0]/ length.length());
-    final_position = finalpos;
+    else{
+        dir2d finalpos(length[1] / length.length(), length[0]/ length.length());
+        final_position = finalpos;
+    }
     return final_position; // .length() of this seems to always be 1
 };
 
@@ -43,7 +48,7 @@ dir2d &Forces::repulsive_force(std::shared_ptr<Forces>pedesb, dir2d &Forces, dou
     dir2d Force;
     double b;
     double V_zero = 2.1;
-    double sigma = 0.3;
+    double sigma = 0.8;
     dir2d unit_length = Return_Current_Position()- pedesb->Return_Current_Position();
     if(unit_length[0] == 0 && unit_length[1] == 0){
         Forces = {0,0};
@@ -78,7 +83,7 @@ dir2d &Forces::border_repulsive(dir2d &Forces){
     std::vector<std::pair<double,double>> top_vec = {{0,10},{5,10},{10,10},{15,10},{20,10},{25,10},{30,10},{35,10},{40,10},{45,10},{50,10}};
     std::vector<std::pair<double,double>> bottom_vec = {{0,0},{5,0},{10,0},{15,0},{20,0},{25,0},{30,0},{35,0},{40,0},{45,0},{50,0}};
     double U_zero = 10; //m^2/s^-2
-    double R = 0.2; //m
+    double R = 0.9; //m
     dir2d total_top;
     dir2d total_bot;
     dir2d total_temp;
@@ -96,8 +101,8 @@ dir2d &Forces::border_repulsive(dir2d &Forces){
         total_bot = total_bot + force_bot;
     }
     total_temp = total_top + total_bot; // chose this as it would cancel out in the middle, which is ideal
-    Forces = {total_temp[1]/top_vec.size(),total_temp[0]/top_vec.size()};
-    //Forces = {total_temp[1],total_temp[0]};
+    //Forces = {total_temp[1]/top_vec.size(),total_temp[0]/top_vec.size()};
+    Forces = {total_temp[1],total_temp[0]};
     return Forces;
 };
 
@@ -116,7 +121,7 @@ dir2d &Forces::Resultant_force(std::vector<std::shared_ptr<sfm::Forces> >Pedestr
     //std::cout << des_dir[1] << " ," << des_dir[0] << " desired direction" << std::endl;
     double Fov = fov(rep_force,des_dir,Fov);
     //std::cout << Fov << " fov, 1 or 0.5" << std::endl;
-    Forces = (rep_force)*Fov + bor_repul+ ata_force;
+    Forces = (rep_force)*Fov + bor_repul + ata_force;
     //std::cout << Forces[1] << " ," << Forces[0] << " resultant force" << std::endl;
     return Forces;
 };

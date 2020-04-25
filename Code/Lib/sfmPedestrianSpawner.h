@@ -44,7 +44,7 @@ class Factory : public Forces {
         dir2d x_values = {0.1,49.9}, 
         dir2d y_values = {0.1,9.9},
         dir2d speed = {0.1,1.5}, //min,max
-        dir2d rest = {0.1,0.5} // min,max   
+        dir2d rest = {0.5,0.9} // min,max   
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Directional(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
