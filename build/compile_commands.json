@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmBasicTypes.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmBasicTypes.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmBasicTypes.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmMyFunctions.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmMyFunctions.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmMyFunctions.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmException.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmException.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmException.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmPedestrian.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmPedestrian.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmPedestrian.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmForces.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmForces.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmForces.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmPedestrianSpawner.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmPedestrianSpawner.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmPedestrianSpawner.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/Lib",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/phas0100assignment2.dir/sfmVisualiser.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmVisualiser.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib/sfmVisualiser.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/CommandLineApps",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmMyFirstApp.dir/sfmMyFirstApp.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmMyFirstApp.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmMyFirstApp.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/CommandLineApps",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -fopenmp -std=c++11 -o CMakeFiles/sfmOpen_MP.x.dir/sfmOpen_MP.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmOpen_MP.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmOpen_MP.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/CommandLineApps",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmVisualiser.dir/sfmVisualiser.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmVisualiser.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmVisualiser.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Code/CommandLineApps",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmVisualiserDemo.dir/sfmVisualiserDemo.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmVisualiserDemo.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Code/CommandLineApps/sfmVisualiserDemo.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmCommandLineArgsTest.dir/sfmCommandLineArgsTest.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCommandLineArgsTest.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCommandLineArgsTest.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmCommandLineArgsTest.dir/sfmCatchMain.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmPHASTest.dir/sfmPHASTest.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmPHASTest.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmPHASTest.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmPHASTest.dir/sfmCatchMain.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmBasicTest.dir/sfmBasicTest.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmBasicTest.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmBasicTest.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmBasicTest.dir/sfmCatchMain.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmTypesTest.dir/sfmTypesTest.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmTypesTest.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmTypesTest.cpp"
+},
+{
+  "directory": "/home/sukrire/GitHub/PHAS0100Assignment2/build/Testing",
+  "command": "/usr/bin/g++-7  -DvtkRenderingContext2D_AUTOINIT=\"1(vtkRenderingContextOpenGL2)\" -DvtkRenderingCore_AUTOINIT=\"3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)\" -DvtkRenderingOpenGL2_AUTOINIT=\"1(vtkRenderingGL2PSOpenGL2)\" -I/usr/include/vtk-7.1 -I/usr/include/freetype2 -I/usr/include/x86_64-linux-gnu -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/3rdParty/Eigen-3.2.2.1 -I/home/sukrire/GitHub/PHAS0100Assignment2/Code/Lib -I/home/sukrire/GitHub/PHAS0100Assignment2/build -I/home/sukrire/GitHub/PHAS0100Assignment2/Testing     -Wno-deprecated-declarations -g   -std=c++11 -o CMakeFiles/sfmTypesTest.dir/sfmCatchMain.cpp.o -c /home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp",
+  "file": "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/sfmCatchMain.cpp"
+}
+]

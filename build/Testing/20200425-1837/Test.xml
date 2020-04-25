@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Linux-g++-7"
+	BuildStamp="20200425-1837-Experimental"
+	Name="sukrire-desktop"
+	Generator="ctest-3.10.2"
+	CompilerName="/usr/bin/g++-7"
+	CompilerVersion="7.5.0"
+	OSName="Linux"
+	Hostname="sukrire-desktop"
+	OSRelease="5.3.0-46-generic"
+	OSVersion="#38~18.04.1-Ubuntu SMP Tue Mar 31 04:17:56 UTC 2020"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="85"
+	ProcessorCacheSize="19712"
+	NumberOfLogicalCPU="28"
+	NumberOfPhysicalCPU="14"
+	TotalVirtualMemory="30517"
+	TotalPhysicalMemory="31817"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3959.99"
+	>
+	<Testing>
+		<StartDateTime>Apr 25 19:37 BST</StartDateTime>
+		<StartTestTime>1587839820</StartTestTime>
+		<TestList>
+			<Test>./Testing/NoArgs</Test>
+			<Test>./Testing/1File</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>NoArgs</Name>
+			<Path>./Testing</Path>
+			<FullName>./Testing/NoArgs</FullName>
+			<FullCommandLine>/home/sukrire/GitHub/PHAS0100Assignment2/build/bin/sfmTypesTest</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00223994</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/sukrire/GitHub/PHAS0100Assignment2/build/bin/sfmTypesTest</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyztaUq4HLMyVEoSS0uKVYoSCwuTk1R0DCyUACxikoy8/OKFTLzFMzBChSSE4tTizW5uABwWCOh====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="passed">
+			<Name>1File</Name>
+			<Path>./Testing</Path>
+			<FullName>./Testing/1File</FullName>
+			<FullCommandLine>/home/sukrire/GitHub/PHAS0100Assignment2/build/bin/sfmCommandLineArgsTest "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/Data/input.txt"</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00200486</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/sukrire/GitHub/PHAS0100Assignment2/build/bin/sfmCommandLineArgsTest "/home/sukrire/GitHub/PHAS0100Assignment2/Testing/Data/input.txt"</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyztaUq4HLMyVEoSS0uKVYoSCwuTk1R0DBUADGKSjLz8xQy8xQMwdIKyYnFqZpcXAAFUSJ8====</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Apr 25 19:37 BST</EndDateTime>
+		<EndTestTime>1587839820</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

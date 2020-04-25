@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../bin/libphas0100assignment2.a  CMakeFiles/phas0100assignment2.dir/sfmBasicTypes.cpp.o CMakeFiles/phas0100assignment2.dir/sfmMyFunctions.cpp.o CMakeFiles/phas0100assignment2.dir/sfmException.cpp.o CMakeFiles/phas0100assignment2.dir/sfmPedestrian.cpp.o CMakeFiles/phas0100assignment2.dir/sfmForces.cpp.o CMakeFiles/phas0100assignment2.dir/sfmPedestrianSpawner.cpp.o CMakeFiles/phas0100assignment2.dir/sfmVisualiser.cpp.o
+/usr/bin/ranlib ../../bin/libphas0100assignment2.a
