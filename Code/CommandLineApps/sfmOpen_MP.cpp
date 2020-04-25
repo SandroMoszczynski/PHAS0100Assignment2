@@ -15,21 +15,40 @@
 #include <omp.h>
 #endif
 
-int main()
+std::vector<std::shared_ptr<sfm::Forces> > &update_pedestrian(std::vector<std::shared_ptr<sfm::Forces> > &pedestrians)
 {
-    #ifdef _OPENMP
-    omp_set_dynamic(14);
-    #endif
+    double dt = 0.1; //s
+    double finish_time_s = 10;//second
+    double v_max = 1.3;
+    sfm::dir2d temp_force;
+    sfm::dir2d new_velocity;
+    sfm::dir2d position;
+    sfm::pos2d new_position;
+    for(int t=0; t<(finish_time_s/dt);++t){
+        #pragma omp paralell private(new_velocity),private(position),private(new_position), firstprivate(temp_force), shared(pedestrians)
+        {
+            #pragma omp for
+            for(int j=0; j<pedestrians.size();++j){               
+                temp_force = pedestrians[j]->Resultant_force(pedestrians,temp_force, dt);
+                new_velocity = (temp_force*dt) + pedestrians[j]->Return_Velocity();
+                if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
+                    new_velocity = new_velocity*(v_max*pedestrians[j]->Return_Speed()/new_velocity.length());
+                    }
+                position = {pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]};
+                new_position = {position[1]+(new_velocity[1]*dt),(position[0]+new_velocity[0]*dt)};
+                pedestrians[j]->Update_Velocity(new_velocity);
+                pedestrians[j]->Update_Current_Position(new_position);
+            
+            }
+        }
+    }
+    return pedestrians;
+}
 
-    // std::cout << omp_get_num_threads() << std::endl;
-    int no_pedestrians;
-    std::cout << "no pedestrians;" << std::endl; //150 per thread seems to max out each thread, break them into batches of 150
-    std::cin >> no_pedestrians;
-    std::cout << "start" << std::endl;
-
-    std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
-    std::clock_t c_start = std::clock();
-    auto t_start = std::chrono::high_resolution_clock::now();
+std::vector<std::shared_ptr<sfm::Forces> > &Create_Pedestrian(std::vector<std::shared_ptr<sfm::Forces> > &pedestrians)
+{
+    int no_pedestrians = 500;
+    //std::cin >> no_pedestrians;
     
     sfm::dir2d left_side_x(1,1);
     sfm::dir2d left_side_y(0.1,9.9);
@@ -51,34 +70,31 @@ int main()
     pedestrians2 = sfm::Factory::Directional(pedestrians2,no_pedestrians/2,direc2,right_side_x,right_side_y);
     for(int point = 0; point < pedestrians2.size();++point){
         pedestrians.emplace_back(pedestrians2[point]);
-    }   
-    double dt = 0.1; //s
-    double finish_time_s = 10;//second
-    double v_max = 1.3;
+    }
+    return pedestrians;   
+}
 
-    //open mp testing
-    
+int main()
+{
+    #ifdef _OPENMP
+    omp_set_dynamic(0);
+    //omp_set_num_threads(14);
+    #endif
+
+    std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
+
+
+    std::cout << "start" << std::endl;
+    std::clock_t c_start = std::clock();
+    auto t_start = std::chrono::high_resolution_clock::now();
+    pedestrians = Create_Pedestrian(pedestrians);
     #pragma omp parallel shared(pedestrians)
-    for(int t=0; t<(finish_time_s/dt);++t){
-        for(int j=0; j<pedestrians.size();++j){
-            sfm::dir2d temp_force;
-            #pragma omp tasks firstprivate(temp_force) shared(pedestrians[j])
-            {
-                temp_force = pedestrians[j]->Resultant_force(pedestrians,temp_force, dt);
-                sfm::dir2d  new_velocity = (temp_force*dt) + pedestrians[j]->Return_Velocity();
-                //std::cout << new_velocity.length() << ", " << v_max*pedestrians[1]->Return_Speed() << std::endl;
-                if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
-                    new_velocity = new_velocity*(v_max*pedestrians[j]->Return_Speed()/new_velocity.length());
-                    }
-                sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
-                sfm::pos2d new_position = {position[1]+(new_velocity[1]*dt),(position[0]+new_velocity[0]*dt)};
-                pedestrians[j]->Update_Velocity(new_velocity);
-                pedestrians[j]->Update_Current_Position(new_position);
-            } 
-        }
-    } 
-
-
+    {
+        //#pragma single nowait
+        //{
+            pedestrians = update_pedestrian(pedestrians);
+        //}
+    }
     std::clock_t c_end = std::clock();
     auto t_end = std::chrono::high_resolution_clock::now();
     std::cout << "stop" << std::endl;

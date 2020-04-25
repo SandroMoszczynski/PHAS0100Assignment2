@@ -16,17 +16,17 @@
 set(_command_line_apps
   sfmMyFirstApp
   sfmPedestrianSpawner
+  sfmNo_mp
 )
-add_executable(sfmtesting.x sfmtesting.cpp)
+add_executable(sfmOpen_MP.x sfmOpen_MP.cpp)
 
 find_package(OpenMP REQUIRED)
 
 if(OPENMP_FOUND)
-  target_compile_options(sfmtesting.x PUBLIC "${OpenMP_CXX_FLAGS}")
-  target_link_libraries(sfmtesting.x "${OpenMP_CXX_FLAGS}")
-  target_link_libraries(sfmtesting.x ${PHAS0100ASSIGNMENT2_LIBRARIES} ${ALL_THIRD_PARTY_LIBRARIES})
+  target_compile_options(sfmOpen_MP.x PUBLIC "${OpenMP_CXX_FLAGS}")
+  target_link_libraries(sfmOpen_MP.x "${OpenMP_CXX_FLAGS}")
+  target_link_libraries(sfmOpen_MP.x ${PHAS0100ASSIGNMENT2_LIBRARIES} ${ALL_THIRD_PARTY_LIBRARIES})
 endif()
-
 
 if (VTK_FOUND)
   list(APPEND _command_line_apps sfmVisualiser)
