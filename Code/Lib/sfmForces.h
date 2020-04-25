@@ -4,6 +4,10 @@
 #include "sfmBasicTypes.h"
 #include "sfmPedestrian.h"
 
+//for description see forces.cpp, note the default values and phi = 3.49 rad = 200 degrees 
+//i found it easier to reinitialise a force and have it have all of the pedestrian class and
+//force class methods. 
+
 namespace sfm{
 
 class Forces : public Pedestrian {

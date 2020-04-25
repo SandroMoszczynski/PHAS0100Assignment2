@@ -1,6 +1,10 @@
 #include "sfmForces.h"
 #include <iostream>
 
+//the class spawner name was called factory so as to make it shorter,
+//and because i prefered the name. each of the methods are static so as
+//to not need a class member to instantiate it. 
+
 namespace sfm{
 
 class Factory : public Forces {
@@ -35,25 +39,25 @@ class Factory : public Forces {
         double y_max_dest = 9.9, 
         double rest_min = 0.1,
         double rest_max = 0.5
-    ); //left defaults to make it easy to just spawn random pedestrians
+    ); 
     static std::vector<std::shared_ptr<sfm::Forces>> &Targeted(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
         dir2d Destination_x,
         dir2d Destination_y,
-        dir2d x_values = {0.1,49.9}, 
-        dir2d y_values = {0.1,9.9},
-        dir2d speed = {0.1,1.5}, //min,max
-        dir2d rest = {0.5,0.9} // min,max   
+        dir2d x_values = {0.1,49.9},//min,max
+        dir2d y_values = {0.1,9.9},//min,max
+        dir2d speed = {0.1,1.5},//min,max
+        dir2d rest = {0.5,0.9}// min,max   
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Directional(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
         dir2d Direction,
-        dir2d x_values = {0.1,49.9},
-        dir2d y_values = {0.1,9.9},
-        dir2d speed = {0.1,1.5},
-        dir2d rest = {0.1,0.5}
+        dir2d x_values = {0.1,49.9},//min,max
+        dir2d y_values = {0.1,9.9},//min,max
+        dir2d speed = {0.1,1.5},//min,max
+        dir2d rest = {0.1,0.5}//min,max
     );
     static std::vector<std::shared_ptr<sfm::Forces>> &Uniform(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
@@ -61,7 +65,7 @@ class Factory : public Forces {
         int no_pedestrians,
         dir2d Destination_x,
         dir2d Destination_y
-    ); //Type_pedestrian = Targeted or Directional
+    );
     static std::vector<std::shared_ptr<sfm::Forces>> &Distributed(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         std::string Type_pedestrian,

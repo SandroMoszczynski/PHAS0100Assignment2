@@ -67,12 +67,8 @@ std::vector<std::shared_ptr<sfm::Forces> > &Create_Pedestrian(std::vector<std::s
     //variable initialisations for easier alteration, started in 2 boxes at left and right side of corridor
     sfm::dir2d left_side_x(1,1);
     sfm::dir2d left_side_y(0.1,9.9);
-    sfm::dir2d dest_left_x(48,49);
-    sfm::dir2d dest_left_y(0.1,9.9);
     sfm::dir2d right_side_x(48,49);
     sfm::dir2d right_side_y(0.1,9.9);
-    sfm::dir2d dest_right_x(1,2);
-    sfm::dir2d dest_right_y(0.1,9.9);
     sfm::dir2d direc1(1,0);
     sfm::dir2d direc2(-1,0);
 

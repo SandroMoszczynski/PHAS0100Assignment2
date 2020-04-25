@@ -3,6 +3,9 @@
 #include <Eigen/Dense>
 #include "sfmBasicTypes.h"
 
+//initialisation of the pedestriuan class with appropriate types. each value has a way to return it,
+//and there is an update velocity and current position.
+
 namespace sfm{
 
 class Pedestrian {

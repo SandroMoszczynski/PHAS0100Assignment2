@@ -2,6 +2,8 @@
 
 namespace sfm{
 
+//initiasation of the pedestrian class, positions take pos2d velocity takes a dir2d,
+//as it has a .length() value. doubles for the rest
 Pedestrian::Pedestrian(pos2d _origin,pos2d _destination, dir2d _velocity,pos2d _current_position,double _speed,double _rest_time){
 
     origin = _origin;

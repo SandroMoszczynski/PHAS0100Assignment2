@@ -5,6 +5,9 @@
 
 namespace sfm{
 
+//this creates a dir2d vector with random values between a specified range.
+//each of the functions uses the systemclock to create a random seed,
+//this means its almost impossible for the values to all be the same
 dir2d &Factory::R_Dir2d(dir2d &dir2d_out, double x_min, double x_max, double y_min, double y_max){
     std::default_random_engine generator;
     generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
@@ -15,7 +18,7 @@ dir2d &Factory::R_Dir2d(dir2d &dir2d_out, double x_min, double x_max, double y_m
     return dir2d_out;
 };
 
-
+//does the same as above but for a pos2d vector.
 pos2d &Factory::R_Pos2d(pos2d &pos2d_out,double x_min, double x_max, double y_min, double y_max){
     std::default_random_engine generator;
     generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
@@ -26,6 +29,7 @@ pos2d &Factory::R_Pos2d(pos2d &pos2d_out,double x_min, double x_max, double y_mi
     return pos2d_out;
 };
 
+//as above but for a double.
 double &Factory::R_Doub(double &double_out, double double_min, double double_max){
     std::default_random_engine generator;
     generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
@@ -35,6 +39,11 @@ double &Factory::R_Doub(double &double_out, double double_min, double double_max
     return double_out;
 };
 
+//this is the pedestrian spawner. it creates an instance of a class and then
+//creates a pointer for it, it then inputs it into a vector of pointers. 
+// each of the values except no_pedestrians has a default value to allow for
+// very quick random generation. the current position is also set to origin,
+// which should always be where it starts. 
 std::vector<std::shared_ptr<sfm::Forces>> &Factory::Spawner(
     std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
     int no_pedestrians,
@@ -69,6 +78,10 @@ std::vector<std::shared_ptr<sfm::Forces>> &Factory::Spawner(
     return pedestrians;
 };
 
+//this is the first time saving function. it needs less inputs but has a few defaults
+//incase you need to change the values. in this case the factory needs a destination,
+//and a number of pedestrians. but can have specified speeds and rest times. 
+//They start at rest.
 std::vector<std::shared_ptr<sfm::Forces>> &Factory::Targeted(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians,
@@ -105,6 +118,10 @@ std::vector<std::shared_ptr<sfm::Forces>> &Factory::Targeted(
     return pedestrians;
     };
     
+//this factory creates directional pedestrians. In order to do this the desired_direction()
+//method in forces.cpp uses an if statement for when the destination is set to {0,0} that will
+//give it the behaviour nessecery. The required inputs for this class are the number of pedestrians
+//and the direction requested. Optionally you can change the start location and the speed
 std::vector<std::shared_ptr<sfm::Forces>> &Factory::Directional(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         int no_pedestrians, 
@@ -136,11 +153,14 @@ std::vector<std::shared_ptr<sfm::Forces>> &Factory::Directional(
     return pedestrians;
     };
 
+//this is the shortest factory type, with the expection of default spawner. this method takes
+// the type of pedestrian,the the number of pedestrians and the destination of the pedestrians as
+//input. If directional pedestrian type is chosen, the second destination isnt used. 
 std::vector<std::shared_ptr<sfm::Forces>> &Factory::Uniform(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         std::string Type_pedestrian,
         int no_pedestrians,
-        dir2d Destination_x, //destination y is a dummy variable for directional
+        dir2d Destination_x, 
         dir2d Destination_y){
 
     if(Type_pedestrian == "Targeted"){
@@ -157,11 +177,13 @@ std::vector<std::shared_ptr<sfm::Forces>> &Factory::Uniform(
     return pedestrians;
     };    
 
+// the last method takes the above required inputs, plus inputs of where the pedestrians
+//should start. note this also has a dummy variable if directional is chosen.
 std::vector<std::shared_ptr<sfm::Forces>> &Factory::Distributed(
         std::vector<std::shared_ptr<sfm::Forces> > &pedestrians,
         std::string Type_pedestrian,
         int no_pedestrians,
-        dir2d Destination_x, //destination y is a dummy variable for directional
+        dir2d Destination_x, 
         dir2d Destination_y,
         dir2d x_values,
         dir2d y_values){
