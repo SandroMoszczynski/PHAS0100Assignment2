@@ -16,7 +16,6 @@
 set(_command_line_apps
   sfmMyFirstApp
   sfmPedestrianSpawner
-  sfmNo_mp
 )
 add_executable(sfmOpen_MP.x sfmOpen_MP.cpp)
 
