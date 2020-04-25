@@ -1,0 +1,88 @@
+Testing done with 1000 pedestrians 
+For time 100 seconds at intervals of 0.1s
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 1 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 2 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 3 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 4 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 5 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 6 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 7 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 8 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 9 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 10 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 11 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 12 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 13 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 14 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 15 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 16 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 17 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 18 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 19 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 20 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 21 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 22 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 23 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 24 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 25 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 26 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 27 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
+Threadcount: 28 
+CPU time used no mp: 52861.06 ms
+Wall clock time passed no mp: 52861.68 ms
