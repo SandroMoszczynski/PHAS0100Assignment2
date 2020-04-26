@@ -95,7 +95,7 @@ int main()
 {
     //small input/output question to make doing multiple benchmarks easier
     std::string choice;
-    std::cout << "Default?" << std::endl;
+    std::cout << "Default?(Yes/No)" << std::endl;
     std::cin >> choice;
 
     //decided to keep dt constant as it keeps the calculations a little neater
@@ -120,7 +120,7 @@ int main()
     FileName << "Benchmarking_" << no_pedestrians << "_" << finish_time_s << ".txt";
     Results.open(FileName.str());
 
-    //this gives a little preamble at the top of each file, and out puts it to the terminal
+    //this gives a little preamble at the top of each file, and outputs it to the terminal
     Results << "Testing done with " << no_pedestrians << " pedestrians  \n"
             << "For time " << finish_time_s << " seconds at intervals of 0.1s\n";
     std::cout   << "Testing done with " << no_pedestrians << " pedestrians \n"
@@ -173,7 +173,7 @@ int main()
         omp_set_num_threads(num_threads);
         #endif
 
-        //initialising empty vectory for pointer storage
+        //initialising empty vector for pointer storage
         std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
 
         // starting timer here
@@ -217,7 +217,7 @@ int main()
         //section to see if variables are the same before as after, when done on my pc tests came out as 0 difference
         // sfm::pos2d origin_after = pedestrians[0]->Return_Origin();
         // std::cout << origin_before[0] - origin_after[0] << " ," << origin_before[1] - origin_after[1] << std::endl;
-        //presumable if the data hasnt been garbled it should all be correct without needing to check each entry
+        //presumably if the data hasnt been garbled it should all be correct without needing to check each entry
     }
 
     //closes the txt file
