@@ -43,7 +43,7 @@ class Visualiser {
   public:
     Visualiser(unsigned int n_pedestrians = 0,
                   double world_x = POS2D_XWRAP, double world_y = POS2D_YWRAP, 
-		  double window_scale = 15.0);
+		  double window_scale = 40.0);
     ~Visualiser();
     void CreateWorld(unsigned int n_pedestrians, 
 		    double width_x, double width_y);

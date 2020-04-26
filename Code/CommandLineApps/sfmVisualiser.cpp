@@ -24,10 +24,15 @@ int main(int argc, char** argv)
     int no_pedestrians = 100;
     int choice;
     double dt = 0.1;
-    double finish_time_s = 50;
+    double finish_time_s = 100;
     double v_max = 1.3;
     std::vector<std::shared_ptr<sfm::Forces> >pedestrians;
 
+    // Create viewer and initialise with required number of pedestrians
+    //left here as its easier to reposition the viewer to where you would like it before
+    //entering the selection, i left a second commented later incase someone didnt like
+    //this, it is a little jarring at first.
+    sfm::Visualiser viewer(no_pedestrians, world_width_x, world_height_y);
 
     // neatened up the interface to easily pick from three demos
     std::cout   << "Please Pick Demo of 100 pedestrians over 50 seconds; \n"
@@ -38,7 +43,7 @@ int main(int argc, char** argv)
     if(choice == 1){
     
         //set up variables for directional functions
-        sfm::dir2d left_side_x(1,1);
+        sfm::dir2d left_side_x(1,2);
         sfm::dir2d left_side_y(0.1,9.9);
         sfm::dir2d right_side_x(48,49);
         sfm::dir2d right_side_y(0.1,9.9);
@@ -63,7 +68,7 @@ int main(int argc, char** argv)
     else if(choice == 2){
 
         //variables for targeted pedestrians
-        sfm::dir2d left_side_x(1,1);
+        sfm::dir2d left_side_x(1,2);
         sfm::dir2d left_side_y(0.1,9.9);
         sfm::dir2d dest_left_x(48,49);
         sfm::dir2d dest_left_y(0.1,9.9);
@@ -97,16 +102,18 @@ int main(int argc, char** argv)
     }
 
     // Create viewer and initialise with required number of pedestrians
-    sfm::Visualiser viewer(no_pedestrians, world_width_x, world_height_y);
-    
+    //sfm::Visualiser viewer(no_pedestrians, world_width_x, world_height_y);
 
     //for loop over time
-    for(int t=0; t<(finish_time_s/dt);++t){
+    for(int t=0; t<(finish_time_s/dt);++t){   
 
         //next a for loop that goes through each pedestrian and calculates its resultant force and then updates the new qualities
         //detailed explanation in open mp
         for(int j=0; j<pedestrians.size();++j){
-            viewer.SetPedestrian(j, pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0],pedestrians[j]->Return_Velocity()[1],pedestrians[j]->Return_Velocity()[0]);
+            viewer.SetPedestrian(j, pedestrians[j]->Return_Current_Position()[1],
+                                    pedestrians[j]->Return_Current_Position()[0],
+                                    pedestrians[j]->Return_Velocity()[1],
+                                    pedestrians[j]->Return_Velocity()[0]);
             sfm::dir2d temp_force = pedestrians[j]->Resultant_force(pedestrians,temp_force, dt);
             sfm::dir2d  new_velocity = (temp_force*dt) + pedestrians[j]->Return_Velocity();
             if(new_velocity.length() > v_max*pedestrians[j]->Return_Speed()){
@@ -115,15 +122,15 @@ int main(int argc, char** argv)
             sfm::dir2d position(pedestrians[j]->Return_Current_Position()[1],pedestrians[j]->Return_Current_Position()[0]);
             sfm::pos2d new_position = {position[1]+(new_velocity[1]*dt),(position[0]+new_velocity[0]*dt)};
             pedestrians[j]->Update_Velocity(new_velocity);
-            pedestrians[j]->Update_Current_Position(new_position);
+            pedestrians[j]->Update_Current_Position(new_position);           
         }
         
-
         // Tell viewer to redraw scene
         viewer.UpdateScene();
 
-        // Sleep for a bit so can see visualiser updating 
-        std::this_thread::sleep_for (std::chrono::milliseconds(10));
+        // Sleep for a bit so can see visualiser updating, i left it as 10 miliseconds at the 
+        // actual sleep time of 100 ms seemed a bit too slow (0.1s dt)
+        std::this_thread::sleep_for (std::chrono::milliseconds(100));
 
     } 
 
