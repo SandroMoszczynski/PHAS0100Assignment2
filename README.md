@@ -5,6 +5,12 @@ PHAS0100Assignment2
 [![Build Status](https://ci.appveyor.com/api/projects/status/5pm89ej732c1ekf0/branch/master)](https://ci.appveyor.com/project/MattClarkson/cmakecatch2)
 
 
+Photos and Benchmarks
+---------------------
+
+All questions that asked for photographic evidence can be found in the proof of results folder. There are also some benchmarks there. 
+
+
 Usage Instructions
 ------------------
 
