@@ -98,25 +98,23 @@ double &Forces::fov(dir2d rep_force,dir2d des_dir, double &fov,double phi, doubl
 };
 
 //This method calculates the border repulsive force should a pesdestrian stray too close to it. I chose to calculate the
-//vector based on 10 points along the top and bottom of the y axis. this means that the pedestrians are free to overlap at 
-//the ends of the corridor. This also means that the repulsive force is 10 times greater than it should be. I corrected this
-//but found that it was very easy to get an interger overflow for the speed being too great for the repulsive force to overcome
-//it. Thus i left the repulsive force higher than it should be for realism. This is also why R is almost 1m.
-//The calculated repulsive force should cancel out midway, which is why the top and bottom are summed together. 
+//vector based on 100 points along the top and bottom of the y axis. this means that the pedestrians are free to overlap at 
+//the ends of the corridor. This also means that the repulsive force is 100 times greater than it should be. I corrected this
+//but found that it was very easy to get an interger overflow from the speed being too great for the repulsive force to overcome
+//it. Thus i increased U_zero greatly to make the simulation more realistic. The value of R is set up such that it is the midpoint
+//between each wall point, ie each wall point is at 0.5.
+//The calculated repulsive force should cancel out midway, which is why the top and bottom are summed together.
 dir2d &Forces::border_repulsive(dir2d &Forces){
-    std::vector<std::pair<double,double>> top_vec = {{0,10},{5,10},{10,10},{15,10},{20,10},{25,10},{30,10},{35,10},{40,10},{45,10},{50,10}};
-    std::vector<std::pair<double,double>> bottom_vec = {{0,0},{5,0},{10,0},{15,0},{20,0},{25,0},{30,0},{35,0},{40,0},{45,0},{50,0}};
-    double U_zero = 10;
-    double R = 0.9;
+    int granularity = 100;
+    double U_zero = 100;
+    double R = 0.25;
     dir2d total_top;
     dir2d total_bot;
     dir2d total_temp;
     pos2d current_pos  = Return_Current_Position();
-    for(int i = 0;i < top_vec.size(); ++i){
-        vec2d top(top_vec[i].first,top_vec[i].second);
-        vec2d bot(bottom_vec[i].first,bottom_vec[i].second);
-        dir2d dis_to_top(current_pos[1]-top[1],current_pos[0]-top[0]);
-        dir2d dis_to_bot(current_pos[1]-bot[1],current_pos[0]-bot[0]);
+    for(int i = 0;i < granularity; ++i){
+        dir2d dis_to_top(current_pos[1]-(i/2),current_pos[0]-10);
+        dir2d dis_to_bot(current_pos[1]-(i/2),current_pos[0]-0);
         dir2d unit_to_top(dis_to_top[1] / dis_to_top.length(), dis_to_top[0]/ dis_to_top.length());
         dir2d unit_to_bot(dis_to_bot[1] / dis_to_bot.length(), dis_to_bot[0]/ dis_to_bot.length());
         dir2d force_top = U_zero*exp(-dis_to_top.length()/R)*(1/R)*unit_to_top;
@@ -125,8 +123,7 @@ dir2d &Forces::border_repulsive(dir2d &Forces){
         total_bot = total_bot + force_bot;
     }
     total_temp = total_top + total_bot; 
-    //Forces = {total_temp[1]/top_vec.size(),total_temp[0]/top_vec.size()};
-    Forces = {total_temp[1],total_temp[0]};
+    Forces = {total_temp[1]/granularity,total_temp[0]/granularity};
     return Forces;
 };
 
