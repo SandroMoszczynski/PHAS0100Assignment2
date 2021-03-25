@@ -1,4 +1,4 @@
-PHAS0100Assignment2
+Pedestrian Simulator
 -------------------
 
 [![Build Status](https://travis-ci.com/MattClarkson/PHAS0100Assignment2.svg?branch=master)](https://travis-ci.com/sukrire/PHAS0100Assignment2)
